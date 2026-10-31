@@ -11,16 +11,17 @@
 <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;height:100%;background:#0b0b0d;overflow:hidden;font-family:'Manrope',sans-serif;color:#fff}
+html,body{margin:0;height:100%;background:radial-gradient(ellipse at 50% 100%,#1d2c52 0%,#0c0c1f 52%,#02020a 100%) fixed;overflow:hidden;font-family:'Manrope',sans-serif;color:#fff}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
 a{color:inherit;text-decoration:none}
 
 /* ================= INDEX (scrollable, responsive) ================= */
-#index{position:fixed;inset:0;overflow-y:auto;padding:48px clamp(20px,5vw,80px) 80px}
+#index{position:fixed;inset:0;z-index:1;overflow-y:auto;padding:48px clamp(20px,5vw,80px) 80px}
 #index h1{font:800 clamp(28px,4vw,48px) 'Manrope';letter-spacing:-.02em;margin:0}
 #index .lead{opacity:.6;margin:10px 0 0;font-size:17px;line-height:1.5}
-#index h2{font:700 13px 'JetBrains Mono';letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin:44px 0 16px}
+#index h2{font:800 clamp(24px,2.6vw,34px) 'Manrope';letter-spacing:.06em;text-transform:uppercase;color:#fff;opacity:1;margin:56px 0 20px;padding-left:16px;border-left:6px solid #8e98ff;text-shadow:0 2px 14px rgba(0,0,0,.9),0 0 22px rgba(142,152,255,.45)}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
-.tile{display:block;border-radius:14px;background:#17171a;border:1px solid #26262b;overflow:hidden;transition:transform .15s,border-color .15s,box-shadow .15s}
+.tile{display:block;border-radius:14px;background:rgba(20,22,40,.78);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);overflow:hidden;transition:transform .15s,border-color .15s,box-shadow .15s}
 .tile:hover,.tile:focus-visible{transform:translateY(-4px);border-color:#5b6cff;box-shadow:0 14px 36px rgba(0,0,0,.5);outline:none}
 .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;pointer-events:none}
 .thumb>.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;display:block;animation:none}
@@ -30,7 +31,7 @@ a{color:inherit;text-decoration:none}
 .tinfo i{float:right;font:700 11px 'JetBrains Mono';font-style:normal;color:#8e98ff;margin-top:4px}
 
 /* ================= DECK VIEW ================= */
-#deck{position:fixed;inset:0;background:#000;display:none}
+#deck{position:fixed;inset:0;z-index:1;background:transparent;display:none}
 #stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;transform-origin:center center}
 .slide{position:absolute;inset:0;display:none;overflow:hidden}
 .slide.active{display:block}
@@ -254,6 +255,7 @@ a{color:inherit;text-decoration:none}
 </style>
 </head>
 <body>
+<canvas id="sky"></canvas>
 
 <!-- ================= INDEX ================= -->
 <div id="index">
@@ -586,7 +588,7 @@ function addGroup(title,items){
   var h=document.createElement('h2');h.textContent=title;groupsEl.appendChild(h);
   var g=document.createElement('div');g.className='grid';groupsEl.appendChild(g);
   items.forEach(function(it){
-    var a=document.createElement('a');a.className='tile';a.href='#t'+it.n;
+    var a=document.createElement('a');a.className='tile';a.href='#t'+it.n;a.addEventListener('click',function(e){e.preventDefault();openDeck(it.n,0)});
     var th=document.createElement('div');th.className='thumb';
     var cover=stage.querySelector('.slide[data-t="'+it.n+'"][data-p="0"]').cloneNode(true);
     cover.classList.add('active');th.appendChild(cover);
@@ -616,14 +618,15 @@ var lbl=document.getElementById('lbl'),prev=document.getElementById('prev'),next
 var cur={t:0,p:0,list:[]};
 function parse(){var m=location.hash.match(/^#t(\d+)(?:\/(\d+))?/);return m?{t:+m[1],p:Math.max(0,(+m[2]||1)-1)}:null}
 function tname(n){if(n>100)return (n-100)+'. '+BT[n-101].name;return n===13?'Bold Template Pack':(T[n-1]?T[n-1].n+'. '+T[n-1].name:'')}
-function render(){
-  var r=parse();
+function render(){route(parse())}
+function openDeck(t,p){try{history.pushState(null,'','#t'+t+'/'+(p+1))}catch(e){}route({t:t,p:p})}
+function route(r){
   if(!r){
     deck.style.display='none';indexEl.style.display='block';document.title='Frontend Slides — Template Gallery';layoutThumbs();return;
   }
   indexEl.style.display='none';deck.style.display='block';fit();
   var list=[].slice.call(stage.querySelectorAll('.slide[data-t="'+r.t+'"]')).sort(function(a,b){return a.dataset.p-b.dataset.p});
-  if(!list.length){location.hash='';return}
+  if(!list.length){route(null);return}
   cur.t=r.t;cur.list=list;show(Math.min(r.p,list.length-1),true);
 }
 function show(p,fromRoute){
@@ -637,7 +640,8 @@ function show(p,fromRoute){
   if(!fromRoute){try{history.replaceState(null,'','#t'+cur.t+'/'+(cur.p+1))}catch(e){}}
 }
 function fit(){var k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate(-50%,-50%) scale('+k+')'}
-function goIndex(){location.hash=''}
+function goIndex(){try{history.pushState(null,'',location.pathname+location.search)}catch(e){}route(null)}
+document.getElementById('back').addEventListener('click',function(e){e.preventDefault();goIndex()});
 
 prev.onclick=function(){show(cur.p-1)};
 next.onclick=function(){show(cur.p+1)};
@@ -651,9 +655,22 @@ addEventListener('keydown',function(e){
   else if(k==='Escape'||k==='Backspace'){e.preventDefault();goIndex()}
 });
 addEventListener('resize',function(){fit();layoutThumbs()});
-addEventListener('hashchange',render);
+addEventListener('hashchange',render);addEventListener('popstate',render);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layoutThumbs);
 render();
+</script>
+<script>
+/* ============ Starry sky background: twinkling stars + occasional shooting stars ============ */
+(function(){var c=document.getElementById('sky'),x=c.getContext('2d'),S=[],W=0,H=0,M=[];
+var still=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+function init(){var d=Math.min(window.devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*d;c.height=H*d;c.style.width=W+'px';c.style.height=H+'px';x.setTransform(d,0,0,d,0,0);
+var n=Math.round(W*H/2200);S=[];for(var i=0;i<n;i++){var r=Math.random();S.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+.25,p:Math.random()*6.28,s:Math.random()*1.6+.4,h:r<.12?'#ffd9a0':r<.3?'#a8c8ff':'#ffffff'})}}
+function frame(t){x.clearRect(0,0,W,H);
+for(var i=0;i<S.length;i++){var s=S[i];x.globalAlpha=still?.8:.3+.7*(.5+.5*Math.sin(t/1000*s.s+s.p));x.fillStyle=s.h;x.beginPath();x.arc(s.x,s.y,s.r,0,6.2832);x.fill()}
+if(!still){if(Math.random()<.006&&M.length<2)M.push({x:Math.random()*W*.7,y:Math.random()*H*.45,l:0});
+M=M.filter(function(m){m.l+=16;var hx=m.x+m.l*.86,hy=m.y+m.l*.5,tx=hx-150*.86,ty=hy-150*.5;var g=x.createLinearGradient(tx,ty,hx,hy);g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,'rgba(255,255,255,.95)');x.globalAlpha=1;x.strokeStyle=g;x.lineWidth=2;x.beginPath();x.moveTo(tx,ty);x.lineTo(hx,hy);x.stroke();return m.l<900});
+requestAnimationFrame(frame)}}
+init();requestAnimationFrame(frame);addEventListener('resize',function(){init();if(still)requestAnimationFrame(frame)})})();
 </script>
 </body>
 </html>
