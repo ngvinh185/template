@@ -1,2936 +1,659 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Frontend Slides — Template Gallery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@800&family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700;800&family=Syne:wght@700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@600&family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400&family=Bodoni+Moda:wght@400;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Outfit:wght@400;500;700;800&family=Fraunces:ital,wght@0,700;0,900;1,700&family=Work+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Nunito:wght@400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        box-sizing: border-box;
-      }
-      html,
-      body {
-        margin: 0;
-        height: 100%;
-        background: radial-gradient(
-            ellipse at 50% 100%,
-            #1d2c52 0%,
-            #0c0c1f 52%,
-            #02020a 100%
-          )
-          fixed;
-        overflow: hidden;
-        font-family: "Manrope", sans-serif;
-        color: #fff;
-      }
-      #sky {
-        position: fixed;
-        inset: 0;
-        z-index: 0;
-        pointer-events: none;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Frontend Slides — Template Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@800&family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;700;800&family=Syne:wght@700;800&family=Space+Mono:wght@400;700&family=Caveat:wght@600&family=Cormorant:ital,wght@0,400;0,600;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@300;400&family=Bodoni+Moda:wght@400;700&family=DM+Sans:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Outfit:wght@400;500;700;800&family=Fraunces:ital,wght@0,700;0,900;1,700&family=Work+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;700&family=Nunito:wght@400;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Caveat+Brush&family=Alfa+Slab+One&family=Shrikhand&family=Zilla+Slab:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Jost:wght@400;500;700&family=Instrument+Serif:ital@0;1&family=Bricolage+Grotesque:wght@400;700;800&family=Playfair+Display:wght@400;700;900&family=Press+Start+2P&family=VT323&family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600,700&f[]=satoshi@400,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0b0b0d;overflow:hidden;font-family:'Manrope',sans-serif;color:#fff}
+a{color:inherit;text-decoration:none}
 
-      /* ================= INDEX (scrollable, responsive) ================= */
-      #index {
-        position: fixed;
-        inset: 0;
-        z-index: 1;
-        overflow-y: auto;
-        padding: 48px clamp(20px, 5vw, 80px) 80px;
-      }
-      #index h1 {
-        font: 800 clamp(28px, 4vw, 48px) "Manrope";
-        letter-spacing: -0.02em;
-        margin: 0;
-      }
-      #index .lead {
-        opacity: 0.6;
-        margin: 10px 0 0;
-        font-size: 17px;
-        line-height: 1.5;
-      }
-      #index h2 {
-        font: 700 13px "JetBrains Mono";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        opacity: 0.55;
-        margin: 44px 0 16px;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-        gap: 22px;
-      }
-      .tile {
-        display: block;
-        border-radius: 14px;
-        background: rgba(20, 22, 40, 0.78);
-        backdrop-filter: blur(6px);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        overflow: hidden;
-        transition:
-          transform 0.15s,
-          border-color 0.15s,
-          box-shadow 0.15s;
-      }
-      .tile:hover,
-      .tile:focus-visible {
-        transform: translateY(-4px);
-        border-color: #5b6cff;
-        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
-        outline: none;
-      }
-      .thumb {
-        position: relative;
-        aspect-ratio: 16/9;
-        overflow: hidden;
-        background: #000;
-        pointer-events: none;
-      }
-      .thumb > .slide {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 1920px;
-        height: 1080px;
-        transform-origin: 0 0;
-        display: block;
-        animation: none;
-      }
-      .tinfo {
-        padding: 14px 16px 16px;
-      }
-      .tinfo b {
-        display: block;
-        font: 800 18px "Manrope";
-      }
-      .tinfo small {
-        display: block;
-        margin-top: 4px;
-        font: 400 13px "Manrope";
-        opacity: 0.55;
-      }
-      .tinfo i {
-        float: right;
-        font: 700 11px "JetBrains Mono";
-        font-style: normal;
-        color: #8e98ff;
-        margin-top: 4px;
-      }
+/* ================= INDEX (scrollable, responsive) ================= */
+#index{position:fixed;inset:0;overflow-y:auto;padding:48px clamp(20px,5vw,80px) 80px}
+#index h1{font:800 clamp(28px,4vw,48px) 'Manrope';letter-spacing:-.02em;margin:0}
+#index .lead{opacity:.6;margin:10px 0 0;font-size:17px;line-height:1.5}
+#index h2{font:700 13px 'JetBrains Mono';letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin:44px 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:22px}
+.tile{display:block;border-radius:14px;background:#17171a;border:1px solid #26262b;overflow:hidden;transition:transform .15s,border-color .15s,box-shadow .15s}
+.tile:hover,.tile:focus-visible{transform:translateY(-4px);border-color:#5b6cff;box-shadow:0 14px 36px rgba(0,0,0,.5);outline:none}
+.thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000;pointer-events:none}
+.thumb>.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0;display:block;animation:none}
+.tinfo{padding:14px 16px 16px}
+.tinfo b{display:block;font:800 18px 'Manrope'}
+.tinfo small{display:block;margin-top:4px;font:400 13px 'Manrope';opacity:.55}
+.tinfo i{float:right;font:700 11px 'JetBrains Mono';font-style:normal;color:#8e98ff;margin-top:4px}
 
-      /* ================= DECK VIEW ================= */
-      #deck {
-        position: fixed;
-        inset: 0;
-        z-index: 1;
-        background: transparent;
-        display: none;
-      }
-      #stage {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 1920px;
-        height: 1080px;
-        overflow: hidden;
-        transform-origin: center center;
-      }
-      .slide {
-        position: absolute;
-        inset: 0;
-        display: none;
-        overflow: hidden;
-      }
-      .slide.active {
-        display: block;
-      }
-      #stage .slide.active {
-        animation: fadein 0.35s ease;
-      }
-      @keyframes fadein {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
-      }
-      #back {
-        position: fixed;
-        left: 14px;
-        top: 14px;
-        z-index: 20;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        border-radius: 999px;
-        background: rgba(15, 15, 18, 0.78);
-        backdrop-filter: blur(8px);
-        color: #fff;
-        font: 700 14px "Manrope";
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        cursor: pointer;
-      }
-      #back:hover {
-        background: #5b6cff;
-      }
-      #bar {
-        position: fixed;
-        left: 50%;
-        bottom: 14px;
-        transform: translateX(-50%);
-        z-index: 20;
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 6px;
-        border-radius: 999px;
-        background: rgba(15, 15, 18, 0.78);
-        backdrop-filter: blur(8px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        font: 600 13px "Manrope";
-      }
-      #bar button {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        border: 0;
-        background: transparent;
-        color: #fff;
-        font: 700 22px "Manrope";
-        cursor: pointer;
-      }
-      #bar button:hover:not(:disabled) {
-        background: #5b6cff;
-      }
-      #bar button:disabled {
-        opacity: 0.25;
-        cursor: default;
-      }
-      #bar .lbl {
-        padding: 0 12px;
-        min-width: 170px;
-        text-align: center;
-      }
-      #bar .dots {
-        display: flex;
-        gap: 6px;
-      }
-      #bar .dots i {
-        width: 9px;
-        height: 9px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.3);
-        cursor: pointer;
-      }
-      #bar .dots i.on {
-        background: #fff;
-      }
+/* ================= DECK VIEW ================= */
+#deck{position:fixed;inset:0;background:#000;display:none}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;transform-origin:center center}
+.slide{position:absolute;inset:0;display:none;overflow:hidden}
+.slide.active{display:block}
+#stage .slide.active{animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+#back{position:fixed;left:14px;top:14px;z-index:20;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(15,15,18,.78);backdrop-filter:blur(8px);color:#fff;font:700 14px 'Manrope';border:1px solid rgba(255,255,255,.2);cursor:pointer}
+#back:hover{background:#5b6cff}
+#bar{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:6px;padding:6px;border-radius:999px;background:rgba(15,15,18,.78);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2);font:600 13px 'Manrope'}
+#bar button{width:38px;height:38px;border-radius:50%;border:0;background:transparent;color:#fff;font:700 22px 'Manrope';cursor:pointer}
+#bar button:hover:not(:disabled){background:#5b6cff}
+#bar button:disabled{opacity:.25;cursor:default}
+#bar .lbl{padding:0 12px;min-width:170px;text-align:center}
+#bar .dots{display:flex;gap:6px}
+#bar .dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer}
+#bar .dots i.on{background:#fff}
 
-      /* ================= GENERIC CONTENT PAGES (themed by CSS variables) ================= */
-      .tpg {
-        background: var(--bg);
-        color: var(--fg);
-        font-family: var(--fb);
-      }
-      .frame {
-        position: absolute;
-        inset: 0;
-      }
-      .g {
-        position: absolute;
-        inset: var(--pad);
-        display: flex;
-        flex-direction: column;
-        z-index: 2;
-      }
-      .g-kick {
-        font: 700 24px var(--fb);
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: var(--acc2);
-      }
-      .g h2 {
-        font: var(--hw) var(--h2s, 104px)/1.02 var(--fd);
-        font-style: var(--hs, normal);
-        text-transform: var(--hcase, none);
-        color: var(--hcol, var(--fg));
-        margin: 18px 0 52px;
-        text-shadow: var(--hsh, none);
-        letter-spacing: var(--ls, 0);
-      }
-      .g-cards {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--gap, 34px);
-        align-content: start;
-      }
-      .g-card {
-        background: var(--card);
-        color: var(--cfg, var(--fg));
-        border: var(--cb, 0);
-        border-radius: var(--cr, 0);
-        box-shadow: var(--csh, none);
-        padding: var(--cpad, 44px);
-      }
-      .g-card b {
-        display: block;
-        font: var(--hw) 54px var(--fd);
-        color: var(--cnum, var(--acc));
-      }
-      .g-card h3 {
-        font: 700 var(--h3s, 38px)/1.15 var(--fb);
-        margin: 14px 0;
-      }
-      .g-card p {
-        font: 400 var(--ps, 27px)/1.5 var(--fb);
-        opacity: 0.82;
-        margin: 0;
-      }
-      .g-stats {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: var(--gap, 34px);
-      }
-      .g-stat {
-        border-top: 6px solid var(--acc2);
-        padding-top: 26px;
-      }
-      .g-stat .n {
-        font: var(--hw) var(--nn, 190px)/1 var(--fd);
-        color: var(--acc);
-        text-shadow: var(--hsh, none);
-      }
-      .g-stat .l {
-        font: 500 30px var(--fb);
-        color: var(--muted);
-        margin-top: 14px;
-      }
-      .g.c {
-        justify-content: center;
-      }
-      .g-q {
-        font: var(--qw, 400) var(--qz, 88px)/1.15 var(--fd);
-        font-style: var(--qi, normal);
-        color: var(--hcol, var(--fg));
-        text-transform: var(--qcase, none);
-        margin: 0;
-      }
-      .g-q::before {
-        content: "\201C";
-        display: block;
-        font: var(--hw) 240px/0.7 var(--fd);
-        color: var(--acc);
-        height: 110px;
-      }
-      .g-cite {
-        font: 500 30px var(--fb);
-        color: var(--muted);
-        margin-top: 44px;
-      }
-      .g-end h1 {
-        margin: 0;
-        font: var(--hw) var(--h1s, 180px)/0.95 var(--fd);
-        font-style: var(--hs, normal);
-        text-transform: var(--hcase, none);
-        color: var(--hcol, var(--fg));
-        text-shadow: var(--hsh, none);
-      }
-      .g-end p {
-        font: 400 38px/1.5 var(--fb);
-        color: var(--muted);
-        margin: 30px 0 0;
-      }
-      .g-cta {
-        display: inline-block;
-        align-self: flex-start;
-        margin-top: 50px;
-        background: var(--acc);
-        color: var(--ctext, #fff);
-        padding: 26px 58px;
-        border-radius: var(--btn, 999px);
-        border: var(--cb, 0);
-        box-shadow: var(--csh, none);
-        font: 700 34px var(--fb);
-      }
+/* ================= GENERIC CONTENT PAGES (themed by CSS variables) ================= */
+.tpg{background:var(--bg);color:var(--fg);font-family:var(--fb)}
+.frame{position:absolute;inset:0}
+.g{position:absolute;inset:var(--pad);display:flex;flex-direction:column;z-index:2}
+.g-kick{font:700 24px var(--fb);letter-spacing:.25em;text-transform:uppercase;color:var(--acc2)}
+.g h2{font:var(--hw) var(--h2s,104px)/1.02 var(--fd);font-style:var(--hs,normal);text-transform:var(--hcase,none);color:var(--hcol,var(--fg));margin:18px 0 52px;text-shadow:var(--hsh,none);letter-spacing:var(--ls,0)}
+.g-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap,34px);align-content:start}
+.g-card{background:var(--card);color:var(--cfg,var(--fg));border:var(--cb,0);border-radius:var(--cr,0);box-shadow:var(--csh,none);padding:var(--cpad,44px)}
+.g-card b{display:block;font:var(--hw) 54px var(--fd);color:var(--cnum,var(--acc))}
+.g-card h3{font:700 var(--h3s,38px)/1.15 var(--fb);margin:14px 0}
+.g-card p{font:400 var(--ps,27px)/1.5 var(--fb);opacity:.82;margin:0}
+.g-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap,34px)}
+.g-stat{border-top:6px solid var(--acc2);padding-top:26px}
+.g-stat .n{font:var(--hw) var(--nn,190px)/1 var(--fd);color:var(--snum,var(--acc));text-shadow:var(--hsh,none)}
+.g-stat .l{font:500 30px var(--fb);color:var(--muted);margin-top:14px}
+.g.c{justify-content:center}
+.g-q{font:var(--qw,400) var(--qz,88px)/1.15 var(--fd);font-style:var(--qi,normal);color:var(--hcol,var(--fg));text-transform:var(--qcase,none);margin:0}
+.g-q::before{content:"\201C";display:block;font:var(--hw) 240px/.7 var(--fd);color:var(--snum,var(--acc));height:110px}
+.g-cite{font:500 30px var(--fb);color:var(--muted);margin-top:44px}
+.g-end h1{margin:0;font:var(--hw) var(--h1s,180px)/.95 var(--fd);font-style:var(--hs,normal);text-transform:var(--hcase,none);color:var(--hcol,var(--fg));text-shadow:var(--hsh,none)}
+.g-end p{font:400 38px/1.5 var(--fb);color:var(--muted);margin:30px 0 0}
+.g-cta{display:inline-block;align-self:flex-start;margin-top:50px;background:var(--acc);color:var(--ctext,#fff);padding:26px 58px;border-radius:var(--btn,999px);border:var(--cb,0);box-shadow:var(--csh,none);font:700 34px var(--fb)}
 
-      /* ================= FRAMES (decor for pages 2–5) ================= */
-      .f1num {
-        position: absolute;
-        left: 120px;
-        top: 56px;
-        font: 900 110px "Archivo Black";
-        line-height: 1;
-      }
-      .f1nav {
-        position: absolute;
-        right: 120px;
-        top: 88px;
-        display: flex;
-        gap: 44px;
-        font: 500 24px "Space Grotesk";
-      }
-      .f1nav span {
-        opacity: 0.3;
-      }
-      .f1nav .on {
-        opacity: 1;
-        border-bottom: 3px solid #ff5722;
-        padding-bottom: 6px;
-      }
-      .f2band {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 56px;
-        background: #4361ee;
-      }
-      .f2bar {
-        position: absolute;
-        left: 0;
-        top: 200px;
-        width: 70px;
-        height: 14px;
-        background: #0a0a0a;
-      }
-      .f2b {
-        position: absolute;
-        top: 70px;
-        font: 800 22px "Manrope";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #0a0a0a;
-      }
-      .f3strip {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 64px;
-        background: #0066ff
-          radial-gradient(rgba(255, 255, 255, 0.35) 3px, transparent 3.5px) 0
-          0/24px 24px;
-      }
-      .f3tag {
-        position: absolute;
-        right: 110px;
-        top: 70px;
-        background: #d4ff00;
-        color: #1a1a2e;
-        font: 700 24px "Space Mono";
-        padding: 10px 24px;
-        border-radius: 999px;
-      }
-      .f4o {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(90px);
-      }
-      .f4v {
-        position: absolute;
-        left: 90px;
-        top: 0;
-        width: 1px;
-        height: 100%;
-        background: linear-gradient(
-          transparent,
-          #c9b896 30%,
-          #c9b896 70%,
-          transparent
-        );
-        opacity: 0.5;
-      }
-      .f4n {
-        position: absolute;
-        right: 120px;
-        bottom: 70px;
-        font: italic 400 60px "Cormorant";
-        color: #d4a574;
-      }
-      .f5page {
-        position: absolute;
-        left: 150px;
-        top: 80px;
-        width: 1500px;
-        height: 920px;
-        background: #f8f6f1;
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-        border-radius: 6px;
-      }
-      .f5hole {
-        position: absolute;
-        left: 196px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #2d2d2d;
-        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
-      }
-      .f5tab {
-        position: absolute;
-        left: 1650px;
-        width: 92px;
-        border-radius: 0 14px 14px 0;
-        writing-mode: vertical-rl;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font: 500 22px "DM Sans";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #1a1a1a;
-        padding: 18px 0;
-        transition: left 0.2s;
-      }
-      .f5tab.on {
-        left: 1672px;
-        box-shadow: 4px 0 14px rgba(0, 0, 0, 0.35);
-      }
-      .f6card {
-        position: absolute;
-        left: 150px;
-        top: 100px;
-        width: 1500px;
-        height: 880px;
-        background: #faf9f7;
-        border-radius: 40px;
-        box-shadow: 0 24px 60px rgba(60, 80, 100, 0.22);
-      }
-      .f6pill {
-        position: absolute;
-        width: 62px;
-        border-radius: 999px;
-      }
-      .f6ico {
-        position: absolute;
-        left: 1560px;
-        top: 880px;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: #f0b4d4;
-        display: grid;
-        place-items: center;
-        font: 800 30px "Plus Jakarta Sans";
-        color: #1f2a37;
-      }
-      .f7r {
-        position: absolute;
-        left: 50%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: #e4dff0;
-        background-image:
-          linear-gradient(rgba(26, 26, 26, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(26, 26, 26, 0.06) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-      .f7b {
-        position: absolute;
-        right: 90px;
-        top: 60px;
-        background: #c8f0d8;
-        font: 700 24px "Outfit";
-        padding: 12px 30px;
-        border-radius: 999px;
-        color: #1a1a1a;
-      }
-      .f8geo {
-        position: absolute;
-        right: 130px;
-        top: 90px;
-        width: 150px;
-        height: 150px;
-      }
-      .f8geo .ring {
-        position: absolute;
-        inset: 0;
-        border: 4px solid #1a1a1a;
-        border-radius: 50%;
-      }
-      .f8geo .ln {
-        position: absolute;
-        left: -40px;
-        right: -40px;
-        top: 50%;
-        height: 4px;
-        background: #1a1a1a;
-      }
-      .f8geo .dot {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background: #e8d4c0;
-        border: 4px solid #1a1a1a;
-      }
-      .f8n {
-        position: absolute;
-        left: 120px;
-        top: 70px;
-        font: 700 24px "Fraunces";
-        letter-spacing: 0.15em;
-      }
-      .f9g {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(120px);
-      }
-      .f9p {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #00ffcc;
-        box-shadow: 0 0 14px #00ffcc;
-      }
-      .f9t {
-        position: absolute;
-        right: 110px;
-        top: 70px;
-        font:
-          500 22px "Satoshi",
-          "Space Grotesk";
-        letter-spacing: 0.3em;
-        color: #00ffcc;
-      }
-      .f10scan {
-        position: absolute;
-        inset: 0;
-        z-index: 5;
-        background: repeating-linear-gradient(
-          transparent 0 3px,
-          rgba(0, 0, 0, 0.28) 3px 4px
-        );
-        pointer-events: none;
-      }
-      .f10t {
-        position: absolute;
-        left: 150px;
-        top: 60px;
-        font: 400 24px "JetBrains Mono";
-        color: #7d8590;
-      }
-      .f11l {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background: rgba(0, 0, 0, 0.14);
-      }
-      .f11h {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: rgba(0, 0, 0, 0.14);
-      }
-      .f11r {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 200px;
-        height: 200px;
-        background: #ff3300;
-      }
-      .f11n {
-        position: absolute;
-        left: 120px;
-        top: 70px;
-        font: 800 28px "Archivo";
-        letter-spacing: 0.1em;
-      }
-      .f12r {
-        position: absolute;
-        left: 120px;
-        right: 120px;
-        top: 90px;
-        height: 8px;
-        border-top: 3px solid #1a1a1a;
-        border-bottom: 1px solid #1a1a1a;
-      }
-      .f12t {
-        position: absolute;
-        left: 120px;
-        top: 116px;
-        font: 400 20px "Source Serif 4";
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: #777;
-      }
-      .f12f {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 50px;
-        text-align: center;
-        font: italic 400 30px "Cormorant Garamond";
-        color: #777;
-      }
+/* ================= FRAMES (decor for pages 2–5) ================= */
+.f1num{position:absolute;left:120px;top:56px;font:900 110px 'Archivo Black';line-height:1}
+.f1nav{position:absolute;right:120px;top:88px;display:flex;gap:44px;font:500 24px 'Space Grotesk'}
+.f1nav span{opacity:.3}.f1nav .on{opacity:1;border-bottom:3px solid #FF5722;padding-bottom:6px}
+.f2band{position:absolute;left:0;right:0;bottom:0;height:56px;background:#4361ee}
+.f2bar{position:absolute;left:0;top:200px;width:70px;height:14px;background:#0a0a0a}
+.f2b{position:absolute;top:70px;font:800 22px 'Manrope';letter-spacing:.2em;text-transform:uppercase;color:#0a0a0a}
+.f3strip{position:absolute;left:0;top:0;bottom:0;width:64px;background:#0066ff radial-gradient(rgba(255,255,255,.35) 3px,transparent 3.5px) 0 0/24px 24px}
+.f3tag{position:absolute;right:110px;top:70px;background:#d4ff00;color:#1a1a2e;font:700 24px 'Space Mono';padding:10px 24px;border-radius:999px}
+.f4o{position:absolute;border-radius:50%;filter:blur(90px)}
+.f4v{position:absolute;left:90px;top:0;width:1px;height:100%;background:linear-gradient(transparent,#c9b896 30%,#c9b896 70%,transparent);opacity:.5}
+.f4n{position:absolute;right:120px;bottom:70px;font:italic 400 60px 'Cormorant';color:#d4a574}
+.f5page{position:absolute;left:150px;top:80px;width:1500px;height:920px;background:#f8f6f1;box-shadow:0 30px 80px rgba(0,0,0,.5);border-radius:6px}
+.f5hole{position:absolute;left:196px;width:36px;height:36px;border-radius:50%;background:#2d2d2d;box-shadow:inset 0 3px 8px rgba(0,0,0,.6)}
+.f5tab{position:absolute;left:1650px;width:92px;border-radius:0 14px 14px 0;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;font:500 22px 'DM Sans';letter-spacing:.2em;text-transform:uppercase;color:#1a1a1a;padding:18px 0;transition:left .2s}
+.f5tab.on{left:1672px;box-shadow:4px 0 14px rgba(0,0,0,.35)}
+.f6card{position:absolute;left:150px;top:100px;width:1500px;height:880px;background:#faf9f7;border-radius:40px;box-shadow:0 24px 60px rgba(60,80,100,.22)}
+.f6pill{position:absolute;width:62px;border-radius:999px}
+.f6ico{position:absolute;left:1560px;top:880px;width:70px;height:70px;border-radius:50%;background:#f0b4d4;display:grid;place-items:center;font:800 30px 'Plus Jakarta Sans';color:#1f2a37}
+.f7r{position:absolute;left:50%;right:0;top:0;bottom:0;background:#e4dff0;background-image:linear-gradient(rgba(26,26,26,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(26,26,26,.06) 1px,transparent 1px);background-size:60px 60px}
+.f7b{position:absolute;right:90px;top:60px;background:#c8f0d8;font:700 24px 'Outfit';padding:12px 30px;border-radius:999px;color:#1a1a1a}
+.f8geo{position:absolute;right:130px;top:90px;width:150px;height:150px}
+.f8geo .ring{position:absolute;inset:0;border:4px solid #1a1a1a;border-radius:50%}
+.f8geo .ln{position:absolute;left:-40px;right:-40px;top:50%;height:4px;background:#1a1a1a}
+.f8geo .dot{position:absolute;right:10px;top:10px;width:30px;height:30px;border-radius:50%;background:#e8d4c0;border:4px solid #1a1a1a}
+.f8n{position:absolute;left:120px;top:70px;font:700 24px 'Fraunces';letter-spacing:.15em}
+.f9g{position:absolute;border-radius:50%;filter:blur(120px)}
+.f9p{position:absolute;width:6px;height:6px;border-radius:50%;background:#00ffcc;box-shadow:0 0 14px #00ffcc}
+.f9t{position:absolute;right:110px;top:70px;font:500 22px 'Satoshi','Space Grotesk';letter-spacing:.3em;color:#00ffcc}
+.f10scan{position:absolute;inset:0;z-index:5;background:repeating-linear-gradient(transparent 0 3px,rgba(0,0,0,.28) 3px 4px);pointer-events:none}
+.f10t{position:absolute;left:150px;top:60px;font:400 24px 'JetBrains Mono';color:#7d8590}
+.f11l{position:absolute;top:0;bottom:0;width:1px;background:rgba(0,0,0,.14)}
+.f11h{position:absolute;left:0;right:0;height:1px;background:rgba(0,0,0,.14)}
+.f11r{position:absolute;right:0;top:0;width:200px;height:200px;background:#ff3300}
+.f11n{position:absolute;left:120px;top:70px;font:800 28px 'Archivo';letter-spacing:.1em}
+.f12r{position:absolute;left:120px;right:120px;top:90px;height:8px;border-top:3px solid #1a1a1a;border-bottom:1px solid #1a1a1a}
+.f12t{position:absolute;left:120px;top:116px;font:400 20px 'Source Serif 4';letter-spacing:.3em;text-transform:uppercase;color:#777}
+.f12f{position:absolute;left:0;right:0;bottom:50px;text-align:center;font:italic 400 30px 'Cormorant Garamond';color:#777}
 
-      /* ================= TITLE SLIDES (one distinctive cover per template) ================= */
-      /* 01 Bold Signal */
-      .s1 {
-        background: linear-gradient(
-          135deg,
-          #1a1a1a 0%,
-          #2d2d2d 50%,
-          #1a1a1a 100%
-        );
-        color: #fff;
-        font-family: "Space Grotesk";
-      }
-      .s1 .num {
-        position: absolute;
-        left: 120px;
-        top: 80px;
-        font: 900 150px "Archivo Black";
-        line-height: 1;
-        opacity: 0.9;
-      }
-      .s1 nav {
-        position: absolute;
-        right: 120px;
-        top: 110px;
-        display: flex;
-        gap: 52px;
-        font: 500 26px "Space Grotesk";
-      }
-      .s1 nav span {
-        opacity: 0.3;
-      }
-      .s1 nav .on {
-        opacity: 1;
-        border-bottom: 3px solid #ff5722;
-        padding-bottom: 6px;
-      }
-      .s1 .card {
-        position: absolute;
-        left: 120px;
-        bottom: 110px;
-        width: 1180px;
-        height: 560px;
-        background: #ff5722;
-        color: #1a1a1a;
-        padding: 64px 72px;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-      }
-      .s1 h1 {
-        font: 900 190px "Archivo Black";
-        line-height: 0.88;
-        text-transform: uppercase;
-        margin: 0;
-      }
-      .s1 p {
-        font: 500 32px "Space Grotesk";
-        margin: 26px 0 0;
-      }
-      .s1 .side {
-        position: absolute;
-        right: 120px;
-        bottom: 110px;
-        width: 360px;
-        font: 400 26px/1.5 "Space Grotesk";
-        opacity: 0.65;
-      }
-      /* 02 Electric Studio */
-      .s2 {
-        background: #fff;
-        font-family: "Manrope";
-      }
-      .s2 .bot {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 46%;
-        background: #4361ee;
-      }
-      .s2 .bar {
-        position: absolute;
-        left: 120px;
-        top: 54%;
-        width: 160px;
-        height: 14px;
-        background: #0a0a0a;
-        transform: translateY(-50%);
-      }
-      .s2 .brand {
-        position: absolute;
-        font: 800 22px "Manrope";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-      }
-      .s2 .tl {
-        left: 110px;
-        top: 80px;
-        color: #0a0a0a;
-      }
-      .s2 .tr {
-        right: 110px;
-        top: 80px;
-        color: #0a0a0a;
-      }
-      .s2 .bl {
-        left: 110px;
-        bottom: 70px;
-        color: #fff;
-      }
-      .s2 .br {
-        right: 110px;
-        bottom: 70px;
-        color: #fff;
-      }
-      .s2 h1 {
-        position: absolute;
-        left: 110px;
-        top: 200px;
-        width: 1500px;
-        font: 800 128px/1.02 "Manrope";
-        letter-spacing: -0.03em;
-        color: #0a0a0a;
-        margin: 0;
-      }
-      .s2 h1 em {
-        font-style: normal;
-        color: #4361ee;
-      }
-      .s2 p {
-        position: absolute;
-        left: 110px;
-        top: 640px;
-        width: 1100px;
-        font: 500 40px/1.4 "Manrope";
-        color: #fff;
-        margin: 0;
-      }
-      /* 03 Creative Voltage */
-      .s3 {
-        background: #1a1a2e;
-        color: #fff;
-        font-family: "Syne";
-      }
-      .s3 .l {
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 50%;
-        background: #0066ff;
-        background-image: radial-gradient(
-          rgba(255, 255, 255, 0.28) 3px,
-          transparent 3.5px
-        );
-        background-size: 26px 26px;
-      }
-      .s3 .l::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(90deg, #0066ff 30%, transparent);
-      }
-      .s3 h1 {
-        position: absolute;
-        left: 110px;
-        top: 230px;
-        font: 800 170px/0.92 "Syne";
-        z-index: 2;
-        letter-spacing: -0.03em;
-        margin: 0;
-      }
-      .s3 .script {
-        position: absolute;
-        left: 120px;
-        top: 620px;
-        font: 600 80px "Caveat";
-        color: #d4ff00;
-        transform: rotate(-4deg);
-        z-index: 2;
-      }
-      .s3 .r {
-        position: absolute;
-        left: 50%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        padding: 200px 110px;
-        font: 400 30px/1.7 "Space Mono";
-      }
-      .s3 .badge {
-        display: inline-block;
-        background: #d4ff00;
-        color: #1a1a2e;
-        font: 700 26px "Space Mono";
-        padding: 12px 26px;
-        border-radius: 999px;
-        margin: 0 14px 18px 0;
-      }
-      .s3 .badge.o {
-        background: transparent;
-        color: #d4ff00;
-        border: 3px solid #d4ff00;
-      }
-      .s3 .r p {
-        margin-top: 40px;
-        opacity: 0.85;
-      }
-      /* 04 Dark Botanical */
-      .s4 {
-        background: #0f0f0f;
-        color: #e8e4df;
-        font-family: "IBM Plex Sans";
-      }
-      .s4 .orb {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(90px);
-      }
-      .s4 .o1 {
-        width: 620px;
-        height: 620px;
-        right: -120px;
-        bottom: -160px;
-        background: #e8b4b8;
-        opacity: 0.38;
-      }
-      .s4 .o2 {
-        width: 480px;
-        height: 480px;
-        right: 230px;
-        bottom: -200px;
-        background: #d4a574;
-        opacity: 0.35;
-      }
-      .s4 .o3 {
-        width: 340px;
-        height: 340px;
-        right: -40px;
-        bottom: 230px;
-        background: #c9b896;
-        opacity: 0.22;
-      }
-      .s4 .vline {
-        position: absolute;
-        left: 150px;
-        top: 0;
-        width: 1px;
-        height: 100%;
-        background: linear-gradient(
-          transparent,
-          #c9b896 30%,
-          #c9b896 70%,
-          transparent
-        );
-        opacity: 0.5;
-      }
-      .s4 .c {
-        position: absolute;
-        left: 260px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 1100px;
-      }
-      .s4 small {
-        font: 300 24px "IBM Plex Sans";
-        letter-spacing: 0.35em;
-        text-transform: uppercase;
-        color: #d4a574;
-      }
-      .s4 h1 {
-        font: italic 400 150px/1 "Cormorant";
-        margin: 26px 0;
-        color: #e8e4df;
-      }
-      .s4 p {
-        font: 300 32px/1.6 "IBM Plex Sans";
-        color: #9a9590;
-        width: 760px;
-        margin: 0;
-      }
-      .s4 .sig {
-        font: italic 600 54px "Cormorant";
-        color: #e8b4b8;
-        margin-top: 40px;
-      }
-      /* 05 Notebook Tabs */
-      .s5 {
-        background: #2d2d2d;
-        font-family: "DM Sans";
-      }
-      .s5 .page {
-        position: absolute;
-        left: 150px;
-        top: 80px;
-        width: 1500px;
-        height: 920px;
-        background: #f8f6f1;
-        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-        border-radius: 6px;
-        padding: 100px 150px 80px 190px;
-      }
-      .s5 .hole {
-        position: absolute;
-        left: 46px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #2d2d2d;
-        box-shadow: inset 0 3px 8px rgba(0, 0, 0, 0.6);
-      }
-      .s5 .tab {
-        position: absolute;
-        left: 1650px;
-        width: 92px;
-        border-radius: 0 14px 14px 0;
-        writing-mode: vertical-rl;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font: 500 22px "DM Sans";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #1a1a1a;
-        padding: 18px 0;
-      }
-      .s5 small {
-        font: 500 24px "DM Sans";
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: #777;
-      }
-      .s5 h1 {
-        font: 700 148px/1 "Bodoni Moda";
-        color: #1a1a1a;
-        margin: 24px 0 40px;
-      }
-      .s5 h1 i {
-        font-weight: 400;
-      }
-      .s5 p {
-        font: 400 34px/1.55 "DM Sans";
-        color: #444;
-        width: 900px;
-        margin: 0;
-      }
-      /* 06 Pastel Geometry */
-      .s6 {
-        background: #c8d9e6;
-        font-family: "Plus Jakarta Sans";
-      }
-      .s6 .card {
-        position: absolute;
-        left: 150px;
-        top: 100px;
-        width: 1500px;
-        height: 880px;
-        background: #faf9f7;
-        border-radius: 40px;
-        box-shadow: 0 24px 60px rgba(60, 80, 100, 0.22);
-        padding: 120px 130px;
-      }
-      .s6 .pill {
-        position: absolute;
-        width: 62px;
-        border-radius: 999px;
-      }
-      .s6 small {
-        font: 700 24px "Plus Jakarta Sans";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: #7c6aad;
-      }
-      .s6 h1 {
-        font: 800 138px/1.02 "Plus Jakarta Sans";
-        letter-spacing: -0.03em;
-        color: #1f2a37;
-        margin: 26px 0 36px;
-      }
-      .s6 p {
-        font: 500 36px/1.55 "Plus Jakarta Sans";
-        color: #5a6572;
-        width: 900px;
-        margin: 0;
-      }
-      .s6 .ico {
-        position: absolute;
-        right: 60px;
-        bottom: 50px;
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        background: #f0b4d4;
-        display: grid;
-        place-items: center;
-        font: 800 34px "Plus Jakarta Sans";
-        color: #1f2a37;
-      }
-      /* 07 Split Pastel */
-      .s7 {
-        background: #f5e6dc;
-        font-family: "Outfit";
-      }
-      .s7 .r {
-        position: absolute;
-        left: 50%;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        background: #e4dff0;
-        background-image:
-          linear-gradient(rgba(26, 26, 26, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(26, 26, 26, 0.06) 1px, transparent 1px);
-        background-size: 60px 60px;
-      }
-      .s7 h1 {
-        position: absolute;
-        left: 110px;
-        top: 240px;
-        width: 800px;
-        font: 800 150px/0.98 "Outfit";
-        color: #1a1a1a;
-        letter-spacing: -0.03em;
-        margin: 0;
-      }
-      .s7 p {
-        position: absolute;
-        left: 110px;
-        top: 700px;
-        width: 760px;
-        font: 400 36px/1.5 "Outfit";
-        color: #4a4a4a;
-        margin: 0;
-      }
-      .s7 .b {
-        position: absolute;
-        left: 1040px;
-        font: 500 34px "Outfit";
-        padding: 20px 40px;
-        border-radius: 999px;
-        color: #1a1a1a;
-      }
-      .s7 .cta {
-        position: absolute;
-        left: 1040px;
-        top: 730px;
-        background: #1a1a1a;
-        color: #fff;
-        font: 700 36px "Outfit";
-        padding: 26px 56px;
-        border-radius: 999px;
-      }
-      /* 08 Vintage Editorial */
-      .s8 {
-        background: #f5f3ee;
-        font-family: "Work Sans";
-      }
-      .s8 .geo {
-        position: absolute;
-        right: 210px;
-        top: 140px;
-        width: 340px;
-        height: 340px;
-      }
-      .s8 .geo .ring {
-        position: absolute;
-        inset: 0;
-        border: 5px solid #1a1a1a;
-        border-radius: 50%;
-      }
-      .s8 .geo .ln {
-        position: absolute;
-        left: -90px;
-        right: -90px;
-        top: 50%;
-        height: 5px;
-        background: #1a1a1a;
-      }
-      .s8 .geo .dot {
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        width: 56px;
-        height: 56px;
-        border-radius: 50%;
-        background: #e8d4c0;
-        border: 5px solid #1a1a1a;
-      }
-      .s8 .c {
-        position: absolute;
-        left: 160px;
-        top: 230px;
-        width: 1100px;
-      }
-      .s8 small {
-        font: 500 24px "Work Sans";
-        letter-spacing: 0.25em;
-        text-transform: uppercase;
-        color: #555;
-      }
-      .s8 h1 {
-        font: 900 168px/0.95 "Fraunces";
-        color: #1a1a1a;
-        margin: 24px 0 36px;
-        letter-spacing: -0.02em;
-      }
-      .s8 h1 i {
-        font-weight: 700;
-        color: #b5835a;
-      }
-      .s8 p {
-        font: 400 36px/1.5 "Work Sans";
-        color: #555;
-        width: 780px;
-        margin: 0;
-      }
-      .s8 .cta {
-        position: absolute;
-        left: 160px;
-        bottom: 130px;
-        border: 5px solid #1a1a1a;
-        padding: 24px 50px;
-        font: 700 34px "Fraunces";
-        background: #e8d4c0;
-        box-shadow: 10px 10px 0 #1a1a1a;
-      }
-      /* 09 Neon Cyber */
-      .s9 {
-        background: #0a0f1c;
-        color: #fff;
-        font-family: "Satoshi", "Space Grotesk", sans-serif;
-        background-image:
-          linear-gradient(rgba(0, 255, 204, 0.07) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 255, 204, 0.07) 1px, transparent 1px);
-        background-size: 80px 80px;
-      }
-      .s9 .glow {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(120px);
-      }
-      .s9 .g1 {
-        width: 600px;
-        height: 600px;
-        left: -150px;
-        top: -150px;
-        background: #00ffcc;
-        opacity: 0.22;
-      }
-      .s9 .g2 {
-        width: 640px;
-        height: 640px;
-        right: -160px;
-        bottom: -200px;
-        background: #ff00aa;
-        opacity: 0.25;
-      }
-      .s9 .c {
-        position: absolute;
-        left: 150px;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .s9 small {
-        font:
-          500 26px "Satoshi",
-          "Space Grotesk";
-        letter-spacing: 0.35em;
-        text-transform: uppercase;
-        color: #00ffcc;
-      }
-      .s9 h1 {
-        font:
-          700 176px/0.95 "Clash Display",
-          "Syne",
-          sans-serif;
-        margin: 28px 0 34px;
-        text-shadow: 0 0 30px rgba(0, 255, 204, 0.55);
-      }
-      .s9 h1 span {
-        color: #ff00aa;
-        text-shadow: 0 0 30px rgba(255, 0, 170, 0.7);
-      }
-      .s9 p {
-        font:
-          400 36px/1.5 "Satoshi",
-          "Space Grotesk";
-        color: #aab6d3;
-        width: 900px;
-        margin: 0;
-      }
-      .s9 .p {
-        position: absolute;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #00ffcc;
-        box-shadow: 0 0 14px #00ffcc;
-      }
-      /* 10 Terminal Green */
-      .s10 {
-        background: #0d1117;
-        color: #39d353;
-        font-family: "JetBrains Mono", monospace;
-        padding: 130px 150px;
-      }
-      .s10::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: repeating-linear-gradient(
-          transparent 0 3px,
-          rgba(0, 0, 0, 0.28) 3px 4px
-        );
-        pointer-events: none;
-      }
-      .s10 .bar {
-        font: 400 26px "JetBrains Mono";
-        color: #7d8590;
-        margin-bottom: 60px;
-      }
-      .s10 .ln {
-        font: 400 38px/1.7 "JetBrains Mono";
-        color: #c9d1d9;
-      }
-      .s10 .ln b {
-        color: #39d353;
-        font-weight: 700;
-      }
-      .s10 h1 {
-        font: 700 130px/1.1 "JetBrains Mono";
-        margin: 40px 0;
-        color: #39d353;
-        text-shadow: 0 0 18px rgba(57, 211, 83, 0.5);
-      }
-      .s10 .cur {
-        display: inline-block;
-        width: 0.55em;
-        height: 0.95em;
-        background: #39d353;
-        vertical-align: -0.1em;
-        animation: blink 1s steps(1) infinite;
-      }
-      .s10 .k {
-        color: #ff7b72;
-      }
-      .s10 .s {
-        color: #a5d6ff;
-      }
-      .s10 .c2 {
-        color: #7d8590;
-      }
-      @keyframes blink {
-        50% {
-          opacity: 0;
-        }
-      }
-      /* 11 Swiss Modern */
-      .s11 {
-        background: #fff;
-        color: #000;
-        font-family: "Nunito";
-      }
-      .s11 .gl {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        width: 1px;
-        background: rgba(0, 0, 0, 0.14);
-      }
-      .s11 .gh {
-        position: absolute;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: rgba(0, 0, 0, 0.14);
-      }
-      .s11 .red {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 480px;
-        height: 480px;
-        background: #ff3300;
-      }
-      .s11 .circ {
-        position: absolute;
-        right: 560px;
-        bottom: 150px;
-        width: 260px;
-        height: 260px;
-        border-radius: 50%;
-        background: #000;
-      }
-      .s11 .sq {
-        position: absolute;
-        right: 240px;
-        bottom: 150px;
-        width: 260px;
-        height: 260px;
-        border: 14px solid #000;
-      }
-      .s11 small {
-        position: absolute;
-        left: 120px;
-        top: 90px;
-        font: 700 24px "Nunito";
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-      }
-      .s11 h1 {
-        position: absolute;
-        left: 120px;
-        top: 210px;
-        font: 800 230px/0.88 "Archivo";
-        letter-spacing: -0.04em;
-        text-transform: uppercase;
-        margin: 0;
-      }
-      .s11 h1 span {
-        color: #ff3300;
-      }
-      .s11 p {
-        position: absolute;
-        left: 120px;
-        bottom: 130px;
-        width: 720px;
-        font: 400 34px/1.5 "Nunito";
-        margin: 0;
-      }
-      /* 12 Paper & Ink */
-      .s12 {
-        background: #faf9f7;
-        color: #1a1a1a;
-        font-family: "Source Serif 4", serif;
-      }
-      .s12 .c {
-        position: absolute;
-        left: 210px;
-        top: 140px;
-        width: 1500px;
-      }
-      .s12 small {
-        font: 400 24px "Source Serif 4";
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        color: #c41e3a;
-      }
-      .s12 h1 {
-        font: 600 130px/1.02 "Cormorant Garamond";
-        margin: 24px 0 20px;
-      }
-      .s12 hr {
-        border: 0;
-        border-top: 2px solid #1a1a1a;
-        width: 200px;
-        margin: 30px 0 44px;
-      }
-      .s12 .body {
-        columns: 2;
-        column-gap: 90px;
-        font: 400 31px/1.65 "Source Serif 4";
-        width: 1380px;
-      }
-      .s12 .body::first-letter {
-        float: left;
-        font: 600 160px/0.78 "Cormorant Garamond";
-        color: #c41e3a;
-        padding: 14px 20px 0 0;
-      }
-      .s12 blockquote {
-        margin: 0;
-        position: absolute;
-        right: 210px;
-        bottom: 120px;
-        width: 520px;
-        border-left: 6px solid #c41e3a;
-        padding-left: 34px;
-        font: italic 400 48px/1.3 "Cormorant Garamond";
-      }
+/* ================= TITLE SLIDES (one distinctive cover per template) ================= */
+/* 01 Bold Signal */
+.s1{background:linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#1a1a1a 100%);color:#fff;font-family:'Space Grotesk'}
+.s1 .num{position:absolute;left:120px;top:80px;font:900 150px 'Archivo Black';line-height:1;opacity:.9}
+.s1 nav{position:absolute;right:120px;top:110px;display:flex;gap:52px;font:500 26px 'Space Grotesk'}
+.s1 nav span{opacity:.3}.s1 nav .on{opacity:1;border-bottom:3px solid #FF5722;padding-bottom:6px}
+.s1 .card{position:absolute;left:120px;bottom:110px;width:1180px;height:560px;background:#FF5722;color:#1a1a1a;padding:64px 72px;display:flex;flex-direction:column;justify-content:flex-end}
+.s1 h1{font:900 190px 'Archivo Black';line-height:.88;text-transform:uppercase;margin:0}
+.s1 p{font:500 32px 'Space Grotesk';margin:26px 0 0}
+.s1 .side{position:absolute;right:120px;bottom:110px;width:360px;font:400 26px/1.5 'Space Grotesk';opacity:.65}
+/* 02 Electric Studio */
+.s2{background:#fff;font-family:'Manrope'}
+.s2 .bot{position:absolute;left:0;right:0;bottom:0;height:46%;background:#4361ee}
+.s2 .bar{position:absolute;left:120px;top:54%;width:160px;height:14px;background:#0a0a0a;transform:translateY(-50%)}
+.s2 .brand{position:absolute;font:800 22px 'Manrope';letter-spacing:.2em;text-transform:uppercase}
+.s2 .tl{left:110px;top:80px;color:#0a0a0a}.s2 .tr{right:110px;top:80px;color:#0a0a0a}
+.s2 .bl{left:110px;bottom:70px;color:#fff}.s2 .br{right:110px;bottom:70px;color:#fff}
+.s2 h1{position:absolute;left:110px;top:200px;width:1500px;font:800 128px/1.02 'Manrope';letter-spacing:-.03em;color:#0a0a0a;margin:0}
+.s2 h1 em{font-style:normal;color:#4361ee}
+.s2 p{position:absolute;left:110px;top:640px;width:1100px;font:500 40px/1.4 'Manrope';color:#fff;margin:0}
+/* 03 Creative Voltage */
+.s3{background:#1a1a2e;color:#fff;font-family:'Syne'}
+.s3 .l{position:absolute;left:0;top:0;bottom:0;width:50%;background:#0066ff;background-image:radial-gradient(rgba(255,255,255,.28) 3px,transparent 3.5px);background-size:26px 26px}
+.s3 .l::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0066ff 30%,transparent)}
+.s3 h1{position:absolute;left:110px;top:230px;font:800 170px/.92 'Syne';z-index:2;letter-spacing:-.03em;margin:0}
+.s3 .script{position:absolute;left:120px;top:620px;font:600 80px 'Caveat';color:#d4ff00;transform:rotate(-4deg);z-index:2}
+.s3 .r{position:absolute;left:50%;right:0;top:0;bottom:0;padding:200px 110px;font:400 30px/1.7 'Space Mono'}
+.s3 .badge{display:inline-block;background:#d4ff00;color:#1a1a2e;font:700 26px 'Space Mono';padding:12px 26px;border-radius:999px;margin:0 14px 18px 0}
+.s3 .badge.o{background:transparent;color:#d4ff00;border:3px solid #d4ff00}
+.s3 .r p{margin-top:40px;opacity:.85}
+/* 04 Dark Botanical */
+.s4{background:#0f0f0f;color:#e8e4df;font-family:'IBM Plex Sans'}
+.s4 .orb{position:absolute;border-radius:50%;filter:blur(90px)}
+.s4 .o1{width:620px;height:620px;right:-120px;bottom:-160px;background:#e8b4b8;opacity:.38}
+.s4 .o2{width:480px;height:480px;right:230px;bottom:-200px;background:#d4a574;opacity:.35}
+.s4 .o3{width:340px;height:340px;right:-40px;bottom:230px;background:#c9b896;opacity:.22}
+.s4 .vline{position:absolute;left:150px;top:0;width:1px;height:100%;background:linear-gradient(transparent,#c9b896 30%,#c9b896 70%,transparent);opacity:.5}
+.s4 .c{position:absolute;left:260px;top:50%;transform:translateY(-50%);width:1100px}
+.s4 small{font:300 24px 'IBM Plex Sans';letter-spacing:.35em;text-transform:uppercase;color:#d4a574}
+.s4 h1{font:italic 400 150px/1 'Cormorant';margin:26px 0;color:#e8e4df}
+.s4 p{font:300 32px/1.6 'IBM Plex Sans';color:#9a9590;width:760px;margin:0}
+.s4 .sig{font:italic 600 54px 'Cormorant';color:#e8b4b8;margin-top:40px}
+/* 05 Notebook Tabs */
+.s5{background:#2d2d2d;font-family:'DM Sans'}
+.s5 .page{position:absolute;left:150px;top:80px;width:1500px;height:920px;background:#f8f6f1;box-shadow:0 30px 80px rgba(0,0,0,.5);border-radius:6px;padding:100px 150px 80px 190px}
+.s5 .hole{position:absolute;left:46px;width:36px;height:36px;border-radius:50%;background:#2d2d2d;box-shadow:inset 0 3px 8px rgba(0,0,0,.6)}
+.s5 .tab{position:absolute;left:1650px;width:92px;border-radius:0 14px 14px 0;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;font:500 22px 'DM Sans';letter-spacing:.2em;text-transform:uppercase;color:#1a1a1a;padding:18px 0}
+.s5 small{font:500 24px 'DM Sans';letter-spacing:.25em;text-transform:uppercase;color:#777}
+.s5 h1{font:700 148px/1 'Bodoni Moda';color:#1a1a1a;margin:24px 0 40px}
+.s5 h1 i{font-weight:400}
+.s5 p{font:400 34px/1.55 'DM Sans';color:#444;width:900px;margin:0}
+/* 06 Pastel Geometry */
+.s6{background:#c8d9e6;font-family:'Plus Jakarta Sans'}
+.s6 .card{position:absolute;left:150px;top:100px;width:1500px;height:880px;background:#faf9f7;border-radius:40px;box-shadow:0 24px 60px rgba(60,80,100,.22);padding:120px 130px}
+.s6 .pill{position:absolute;width:62px;border-radius:999px}
+.s6 small{font:700 24px 'Plus Jakarta Sans';letter-spacing:.2em;text-transform:uppercase;color:#7c6aad}
+.s6 h1{font:800 138px/1.02 'Plus Jakarta Sans';letter-spacing:-.03em;color:#1f2a37;margin:26px 0 36px}
+.s6 p{font:500 36px/1.55 'Plus Jakarta Sans';color:#5a6572;width:900px;margin:0}
+.s6 .ico{position:absolute;right:60px;bottom:50px;width:70px;height:70px;border-radius:50%;background:#f0b4d4;display:grid;place-items:center;font:800 34px 'Plus Jakarta Sans';color:#1f2a37}
+/* 07 Split Pastel */
+.s7{background:#f5e6dc;font-family:'Outfit'}
+.s7 .r{position:absolute;left:50%;right:0;top:0;bottom:0;background:#e4dff0;background-image:linear-gradient(rgba(26,26,26,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(26,26,26,.06) 1px,transparent 1px);background-size:60px 60px}
+.s7 h1{position:absolute;left:110px;top:240px;width:800px;font:800 150px/.98 'Outfit';color:#1a1a1a;letter-spacing:-.03em;margin:0}
+.s7 p{position:absolute;left:110px;top:700px;width:760px;font:400 36px/1.5 'Outfit';color:#4a4a4a;margin:0}
+.s7 .b{position:absolute;left:1040px;font:500 34px 'Outfit';padding:20px 40px;border-radius:999px;color:#1a1a1a}
+.s7 .cta{position:absolute;left:1040px;top:730px;background:#1a1a1a;color:#fff;font:700 36px 'Outfit';padding:26px 56px;border-radius:999px}
+/* 08 Vintage Editorial */
+.s8{background:#f5f3ee;font-family:'Work Sans'}
+.s8 .geo{position:absolute;right:210px;top:140px;width:340px;height:340px}
+.s8 .geo .ring{position:absolute;inset:0;border:5px solid #1a1a1a;border-radius:50%}
+.s8 .geo .ln{position:absolute;left:-90px;right:-90px;top:50%;height:5px;background:#1a1a1a}
+.s8 .geo .dot{position:absolute;right:20px;top:20px;width:56px;height:56px;border-radius:50%;background:#e8d4c0;border:5px solid #1a1a1a}
+.s8 .c{position:absolute;left:160px;top:230px;width:1100px}
+.s8 small{font:500 24px 'Work Sans';letter-spacing:.25em;text-transform:uppercase;color:#555}
+.s8 h1{font:900 168px/.95 'Fraunces';color:#1a1a1a;margin:24px 0 36px;letter-spacing:-.02em}
+.s8 h1 i{font-weight:700;color:#b5835a}
+.s8 p{font:400 36px/1.5 'Work Sans';color:#555;width:780px;margin:0}
+.s8 .cta{position:absolute;left:160px;bottom:130px;border:5px solid #1a1a1a;padding:24px 50px;font:700 34px 'Fraunces';background:#e8d4c0;box-shadow:10px 10px 0 #1a1a1a}
+/* 09 Neon Cyber */
+.s9{background:#0a0f1c;color:#fff;font-family:'Satoshi','Space Grotesk',sans-serif;background-image:linear-gradient(rgba(0,255,204,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(0,255,204,.07) 1px,transparent 1px);background-size:80px 80px}
+.s9 .glow{position:absolute;border-radius:50%;filter:blur(120px)}
+.s9 .g1{width:600px;height:600px;left:-150px;top:-150px;background:#00ffcc;opacity:.22}
+.s9 .g2{width:640px;height:640px;right:-160px;bottom:-200px;background:#ff00aa;opacity:.25}
+.s9 .c{position:absolute;left:150px;top:50%;transform:translateY(-50%)}
+.s9 small{font:500 26px 'Satoshi','Space Grotesk';letter-spacing:.35em;text-transform:uppercase;color:#00ffcc}
+.s9 h1{font:700 176px/.95 'Clash Display','Syne',sans-serif;margin:28px 0 34px;text-shadow:0 0 30px rgba(0,255,204,.55)}
+.s9 h1 span{color:#ff00aa;text-shadow:0 0 30px rgba(255,0,170,.7)}
+.s9 p{font:400 36px/1.5 'Satoshi','Space Grotesk';color:#aab6d3;width:900px;margin:0}
+.s9 .p{position:absolute;width:6px;height:6px;border-radius:50%;background:#00ffcc;box-shadow:0 0 14px #00ffcc}
+/* 10 Terminal Green */
+.s10{background:#0d1117;color:#39d353;font-family:'JetBrains Mono',monospace;padding:130px 150px}
+.s10::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent 0 3px,rgba(0,0,0,.28) 3px 4px);pointer-events:none}
+.s10 .bar{font:400 26px 'JetBrains Mono';color:#7d8590;margin-bottom:60px}
+.s10 .ln{font:400 38px/1.7 'JetBrains Mono';color:#c9d1d9}
+.s10 .ln b{color:#39d353;font-weight:700}
+.s10 h1{font:700 130px/1.1 'JetBrains Mono';margin:40px 0;color:#39d353;text-shadow:0 0 18px rgba(57,211,83,.5)}
+.s10 .cur{display:inline-block;width:.55em;height:.95em;background:#39d353;vertical-align:-.1em;animation:blink 1s steps(1) infinite}
+.s10 .k{color:#ff7b72}.s10 .s{color:#a5d6ff}.s10 .c2{color:#7d8590}
+@keyframes blink{50%{opacity:0}}
+/* 11 Swiss Modern */
+.s11{background:#fff;color:#000;font-family:'Nunito'}
+.s11 .gl{position:absolute;top:0;bottom:0;width:1px;background:rgba(0,0,0,.14)}
+.s11 .gh{position:absolute;left:0;right:0;height:1px;background:rgba(0,0,0,.14)}
+.s11 .red{position:absolute;right:0;top:0;width:480px;height:480px;background:#ff3300}
+.s11 .circ{position:absolute;right:560px;bottom:150px;width:260px;height:260px;border-radius:50%;background:#000}
+.s11 .sq{position:absolute;right:240px;bottom:150px;width:260px;height:260px;border:14px solid #000}
+.s11 small{position:absolute;left:120px;top:90px;font:700 24px 'Nunito';letter-spacing:.2em;text-transform:uppercase}
+.s11 h1{position:absolute;left:120px;top:210px;font:800 230px/.88 'Archivo';letter-spacing:-.04em;text-transform:uppercase;margin:0}
+.s11 h1 span{color:#ff3300}
+.s11 p{position:absolute;left:120px;bottom:130px;width:720px;font:400 34px/1.5 'Nunito';margin:0}
+/* 12 Paper & Ink */
+.s12{background:#faf9f7;color:#1a1a1a;font-family:'Source Serif 4',serif}
+.s12 .c{position:absolute;left:210px;top:140px;width:1500px}
+.s12 small{font:400 24px 'Source Serif 4';letter-spacing:.3em;text-transform:uppercase;color:#c41e3a}
+.s12 h1{font:600 130px/1.02 'Cormorant Garamond';margin:24px 0 20px}
+.s12 hr{border:0;border-top:2px solid #1a1a1a;width:200px;margin:30px 0 44px}
+.s12 .body{columns:2;column-gap:90px;font:400 31px/1.65 'Source Serif 4';width:1380px}
+.s12 .body::first-letter{float:left;font:600 160px/.78 'Cormorant Garamond';color:#c41e3a;padding:14px 20px 0 0}
+.s12 blockquote{margin:0;position:absolute;right:210px;bottom:120px;width:520px;border-left:6px solid #c41e3a;padding-left:34px;font:italic 400 48px/1.3 'Cormorant Garamond'}
 
-      /* ================= BOLD PACK CATALOG ================= */
-      .sc {
-        background: #161616;
-        color: #fff;
-        padding: 80px 110px;
-        font-family: "Manrope";
-      }
-      .sc h2 {
-        font: 800 64px "Manrope";
-        letter-spacing: -0.02em;
-        margin: 0;
-      }
-      .sc .sub {
-        font: 400 24px "Manrope";
-        opacity: 0.55;
-        margin: 10px 0 40px;
-      }
-      .sc .cols {
-        columns: 2;
-        column-gap: 80px;
-      }
-      .sc .it {
-        break-inside: avoid;
-        margin-bottom: 26px;
-        border-left: 4px solid #ff5722;
-        padding-left: 20px;
-      }
-      .sc .it a {
-        font: 800 30px "Manrope";
-        color: #fff;
-      }
-      .sc .it a:hover {
-        color: #ff5722;
-      }
-      .sc .it p {
-        font: 400 22px/1.4 "Manrope";
-        opacity: 0.65;
-        margin: 4px 0 0;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="sky"></canvas>
+/* ================= BOLD TEMPLATE DECOR (generic, themed by vars) ================= */
+.dn{position:absolute;left:120px;bottom:48px;font:600 22px var(--fb);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.dr{position:absolute;left:120px;right:120px;top:72px;height:8px;border-top:4px solid var(--fg);border-bottom:1px solid var(--fg)}
+.db{position:absolute;right:0;top:0;width:190px;height:190px;background:var(--acc2)}
+.drib{position:absolute;left:0;right:0;top:0;height:44px;background:repeating-linear-gradient(135deg,var(--acc) 0 36px,var(--acc2) 36px 72px,var(--fg) 72px 108px)}
+.do{position:absolute;border-radius:50%;filter:blur(100px);opacity:.45}
+.ddots{position:absolute;left:0;top:0;bottom:0;width:56px;background:var(--acc) radial-gradient(rgba(255,255,255,.4) 3px,transparent 3.5px) 0 0/22px 22px}
+.dwin{position:absolute;left:60px;right:60px;top:36px;height:60px;background:#000080;color:#fff;font:400 34px 'VT323';padding:10px 20px;border:3px outset #fff}
+.dsun{position:absolute;right:-40px;top:-90px;width:320px;height:320px;border-radius:50%;background:var(--acc)}
+.dtape{position:absolute;left:50%;top:36px;width:220px;height:60px;margin-left:-110px;background:rgba(255,255,255,.55);border:1px solid rgba(0,0,0,.15);transform:rotate(-3deg)}
+.dpix{position:absolute;right:110px;bottom:90px;width:110px;height:110px;background:var(--acc);box-shadow:-110px 0 0 var(--acc),-220px 0 0 var(--acc2),0 -110px 0 var(--acc2)}
+.dpill{position:absolute;right:110px;bottom:70px;width:300px;height:90px;border-radius:999px;background:var(--acc);box-shadow:-220px -110px 0 var(--acc2)}
+.dgrid{position:absolute;inset:0;background:linear-gradient(rgba(128,128,128,.14) 1px,transparent 1px) 0 0/60px 60px,linear-gradient(90deg,rgba(128,128,128,.14) 1px,transparent 1px) 0 0/60px 60px}
 
-    <!-- ================= INDEX ================= -->
-    <div id="index">
-      <h1>Frontend Slides — Template Gallery</h1>
-      <p class="lead">
-        Bấm vào một template để xem bộ trang mẫu của nó (bìa, nội dung, số liệu,
-        trích dẫn, kết). Trong mỗi bộ có nút “Tất cả template” để quay lại.
-      </p>
-      <div id="groups"></div>
-    </div>
+/* ================= BOLD PACK CATALOG ================= */
+.sc{background:#161616;color:#fff;padding:80px 110px;font-family:'Manrope'}
+.sc h2{font:800 64px 'Manrope';letter-spacing:-.02em;margin:0}
+.sc .sub{font:400 24px 'Manrope';opacity:.55;margin:10px 0 40px}
+.sc .cols{columns:2;column-gap:80px}
+.sc .it{break-inside:avoid;margin-bottom:26px;border-left:4px solid #FF5722;padding-left:20px}
+.sc .it a{font:800 30px 'Manrope';color:#fff}.sc .it a:hover{color:#FF5722}
+.sc .it p{font:400 22px/1.4 'Manrope';opacity:.65;margin:4px 0 0}
+</style>
+</head>
+<body>
 
-    <!-- ================= DECK ================= -->
-    <div id="deck">
-      <a id="back" href="#">← Tất cả template</a>
-      <div id="stage">
-        <!-- 01 -->
-        <section
-          class="slide s1 t1"
-          data-t="1"
-          data-p="0"
-          data-name="Bold Signal"
-        >
-          <div class="num">01</div>
-          <nav>
-            <span class="on">Intro</span><span>Problem</span
-            ><span>Solution</span><span>Roadmap</span>
-          </nav>
-          <div class="card">
-            <h1>Bold<br />Signal</h1>
-            <p>Confident · bold · modern · high-impact</p>
-          </div>
-          <div class="side">
-            Colored card as focal point on a dark gradient. Large section
-            numbers, breadcrumb navigation, grid alignment.
-          </div>
-        </section>
-        <!-- 02 -->
-        <section
-          class="slide s2 t2"
-          data-t="2"
-          data-p="0"
-          data-name="Electric Studio"
-        >
-          <div class="bot"></div>
-          <div class="bar"></div>
-          <div class="brand tl">Studio</div>
-          <div class="brand tr">2026</div>
-          <div class="brand bl">Brand</div>
-          <div class="brand br">01 / 05</div>
-          <h1>“Clean, bold &amp; <em>high contrast</em> says it all.”</h1>
-          <p>
-            Two-panel vertical split with an accent bar on the panel edge. Quote
-            typography as the hero element.
-          </p>
-        </section>
-        <!-- 03 -->
-        <section
-          class="slide s3 t3"
-          data-t="3"
-          data-p="0"
-          data-name="Creative Voltage"
-        >
-          <div class="l"></div>
-          <h1>Creative<br />Voltage</h1>
-          <div class="script">bold &amp; electric!</div>
-          <div class="r">
-            <span class="badge">NEON</span
-            ><span class="badge o">RETRO-MODERN</span
-            ><span class="badge">ENERGY</span>
-            <p>
-              Electric blue + neon yellow contrast, halftone texture, script
-              accents and mono body copy.
-            </p>
-          </div>
-        </section>
-        <!-- 04 -->
-        <section
-          class="slide s4 t4"
-          data-t="4"
-          data-p="0"
-          data-name="Dark Botanical"
-        >
-          <div class="orb o1"></div>
-          <div class="orb o2"></div>
-          <div class="orb o3"></div>
-          <div class="vline"></div>
-          <div class="c">
-            <small>Elegant · Artistic · Premium</small>
-            <h1>Dark Botanical</h1>
-            <p>
-              Soft blurred gradient circles, warm pink and gold accents, thin
-              vertical lines. No illustrations — only abstract CSS shapes.
-            </p>
-            <div class="sig">— Signature</div>
-          </div>
-        </section>
-        <!-- 05 -->
-        <section
-          class="slide s5 t5"
-          data-t="5"
-          data-p="0"
-          data-name="Notebook Tabs"
-        >
-          <div class="page">
-            <div class="hole" style="top: 200px"></div>
-            <div class="hole" style="top: 440px"></div>
-            <div class="hole" style="top: 680px"></div>
-            <small>Editorial · Tactile</small>
-            <h1>Notebook <i>Tabs</i></h1>
-            <p>
-              Cream paper card on a dark background with colorful section tabs
-              on the right edge and binder holes on the left.
-            </p>
-          </div>
-          <div
-            class="tab"
-            style="top: 130px; height: 150px; background: #98d4bb"
-          >
-            Intro
-          </div>
-          <div
-            class="tab"
-            style="top: 300px; height: 170px; background: #c7b8ea"
-          >
-            Plan
-          </div>
-          <div
-            class="tab"
-            style="top: 490px; height: 150px; background: #f4b8c5"
-          >
-            Work
-          </div>
-          <div
-            class="tab"
-            style="top: 660px; height: 150px; background: #a8d8ea"
-          >
-            Data
-          </div>
-          <div
-            class="tab"
-            style="top: 830px; height: 130px; background: #ffe6a7"
-          >
-            End
-          </div>
-        </section>
-        <!-- 06 -->
-        <section
-          class="slide s6 t6"
-          data-t="6"
-          data-p="0"
-          data-name="Pastel Geometry"
-        >
-          <div class="card">
-            <small>Friendly · Organized · Approachable</small>
-            <h1>Pastel<br />Geometry</h1>
-            <p>
-              Rounded white card with a soft shadow, and vertical pills of
-              varying height on the right edge.
-            </p>
-            <div class="ico">↓</div>
-          </div>
-          <div
-            class="pill"
-            style="left: 1690px; top: 240px; height: 120px; background: #f0b4d4"
-          ></div>
-          <div
-            class="pill"
-            style="left: 1690px; top: 380px; height: 190px; background: #a8d4c4"
-          ></div>
-          <div
-            class="pill"
-            style="left: 1690px; top: 590px; height: 260px; background: #5a7c6a"
-          ></div>
-          <div
-            class="pill"
-            style="left: 1760px; top: 300px; height: 190px; background: #9b8dc4"
-          ></div>
-          <div
-            class="pill"
-            style="left: 1760px; top: 510px; height: 120px; background: #7c6aad"
-          ></div>
-        </section>
-        <!-- 07 -->
-        <section
-          class="slide s7 t7"
-          data-t="7"
-          data-p="0"
-          data-name="Split Pastel"
-        >
-          <div class="r"></div>
-          <h1>Split<br />Pastel</h1>
-          <p>
-            Playful and modern: a peach / lavender split, badge pills with
-            icons, grid overlay and rounded CTAs.
-          </p>
-          <div class="b" style="top: 240px; background: #c8f0d8">✦ Playful</div>
-          <div class="b" style="top: 350px; left: 1180px; background: #f0f0c8">
-            ★ Modern
-          </div>
-          <div class="b" style="top: 460px; background: #f0d4e0">
-            ● Friendly
-          </div>
-          <div class="b" style="top: 570px; left: 1220px; background: #fff">
-            ◆ Creative
-          </div>
-          <div class="cta">Get started →</div>
-        </section>
-        <!-- 08 -->
-        <section
-          class="slide s8 t8"
-          data-t="8"
-          data-p="0"
-          data-name="Vintage Editorial"
-        >
-          <div class="geo">
-            <div class="ring"></div>
-            <div class="ln"></div>
-            <div class="dot"></div>
-          </div>
-          <div class="c">
-            <small>Witty · Confident · Personality-driven</small>
-            <h1>Vintage<br /><i>Editorial</i></h1>
-            <p>
-              Abstract geometric shapes (circle outline + line + dot), bold
-              bordered CTA boxes, conversational copy.
-            </p>
-          </div>
-          <div class="cta">Read the story</div>
-        </section>
-        <!-- 09 -->
-        <section
-          class="slide s9 t9"
-          data-t="9"
-          data-p="0"
-          data-name="Neon Cyber"
-        >
-          <div class="glow g1"></div>
-          <div class="glow g2"></div>
-          <div class="p" style="left: 1400px; top: 200px"></div>
-          <div class="p" style="left: 1580px; top: 420px"></div>
-          <div class="p" style="left: 1250px; top: 600px"></div>
-          <div class="p" style="left: 1700px; top: 760px"></div>
-          <div class="p" style="left: 900px; top: 140px"></div>
-          <div class="p" style="left: 1500px; top: 880px"></div>
-          <div class="c">
-            <small>Futuristic · Techy · Confident</small>
-            <h1>Neon <span>Cyber</span></h1>
-            <p>
-              Deep navy, cyan and magenta glow, grid pattern and particle-style
-              dots. Clash Display + Satoshi.
-            </p>
-          </div>
-        </section>
-        <!-- 10 -->
-        <section
-          class="slide s10 t10"
-          data-t="10"
-          data-p="0"
-          data-name="Terminal Green"
-        >
-          <div class="bar">● ● ●&nbsp;&nbsp; ~/slides — zsh</div>
-          <div class="ln">
-            <b>$</b> <span class="k">cat</span> <span class="s">style.md</span>
-          </div>
-          <h1>Terminal Green<span class="cur"></span></h1>
-          <div class="ln c2"># developer-focused, hacker aesthetic</div>
-          <div class="ln">
-            <span class="k">const</span> theme = { bg:
-            <span class="s">"#0d1117"</span>, accent:
-            <span class="s">"#39d353"</span> };
-          </div>
-          <div class="ln c2">
-            // scan lines · blinking cursor · code syntax styling
-          </div>
-        </section>
-        <!-- 11 -->
-        <section
-          class="slide s11 t11"
-          data-t="11"
-          data-p="0"
-          data-name="Swiss Modern"
-        >
-          <div class="gl" style="left: 120px"></div>
-          <div class="gl" style="left: 660px"></div>
-          <div class="gl" style="left: 1200px"></div>
-          <div class="gl" style="left: 1740px"></div>
-          <div class="gh" style="top: 180px"></div>
-          <div class="gh" style="top: 900px"></div>
-          <div class="red"></div>
-          <div class="circ"></div>
-          <div class="sq"></div>
-          <small>Clean · Precise · Bauhaus</small>
-          <h1>Swiss<br /><span>Modern</span></h1>
-          <p>
-            Visible grid, asymmetric layout, geometric shapes. Pure white, pure
-            black, one red accent.
-          </p>
-        </section>
-        <!-- 12 -->
-        <section
-          class="slide s12 t12"
-          data-t="12"
-          data-p="0"
-          data-name="Paper & Ink"
-        >
-          <div class="c">
-            <small>Editorial · Literary · Thoughtful</small>
-            <h1>Paper &amp; Ink</h1>
-            <hr />
-            <div class="body">
-              Warm cream paper, charcoal text and a single crimson accent. Drop
-              caps open each section, pull quotes carry the argument, and
-              elegant horizontal rules set the rhythm. It is a deck that reads
-              like a good essay and rewards slow attention.
-            </div>
-          </div>
-          <blockquote>
-            Good typography is invisible until it is missing.
-          </blockquote>
-        </section>
-      </div>
-      <div id="bar">
-        <button id="prev" aria-label="Trang trước">‹</button>
-        <div class="lbl" id="lbl"></div>
-        <button id="next" aria-label="Trang sau">›</button>
-      </div>
-    </div>
+<!-- ================= INDEX ================= -->
+<div id="index">
+  <h1>Frontend Slides — Template Gallery</h1>
+  <p class="lead">Bấm vào một template để xem bộ trang mẫu của nó (bìa, nội dung, số liệu, trích dẫn, kết). Trong mỗi bộ có nút “Tất cả template” để quay lại.</p>
+  <div id="groups"></div>
+</div>
 
-    <script>
-      /* ============ Template definitions (palette / fonts / layout vars per preset) ============ */
-      var NARROW = {
-        "--h2s": "84px",
-        "--h1s": "130px",
-        "--cpad": "30px",
-        "--h3s": "30px",
-        "--ps": "22px",
-        "--nn": "140px",
-        "--qz": "68px",
-        "--gap": "24px",
-      };
-      function mix(a, b) {
-        var o = {},
-          k;
-        for (k in a) o[k] = a[k];
-        for (k in b) o[k] = b[k];
-        return o;
-      }
-      var T = [
-        {
-          n: 1,
-          name: "Bold Signal",
-          grp: "Dark",
-          fonts: "Archivo Black + Space Grotesk",
-          v: {
-            "--bg":
-              "linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#1a1a1a 100%)",
-            "--fg": "#fff",
-            "--muted": "#aaa",
-            "--acc": "#FF5722",
-            "--acc2": "#FF5722",
-            "--fd": "'Archivo Black'",
-            "--fb": "'Space Grotesk'",
-            "--hw": 900,
-            "--hcase": "uppercase",
-            "--card": "#FF5722",
-            "--cfg": "#1a1a1a",
-            "--cnum": "#1a1a1a",
-            "--ctext": "#1a1a1a",
-            "--btn": "0",
-            "--pad": "210px 120px 100px",
-            "--h2s": "96px",
-          },
-          frame: function (n) {
-            var l = ["Intro", "Problem", "Solution", "Roadmap"],
-              a = Math.min(n - 2, 3);
-            return (
-              '<div class="f1num">0' +
-              n +
-              '</div><div class="f1nav">' +
-              l
-                .map(function (x, i) {
-                  return (
-                    "<span" +
-                    (i === a ? ' class="on"' : "") +
-                    ">" +
-                    x +
-                    "</span>"
-                  );
-                })
-                .join("") +
-              "</div>"
-            );
-          },
-        },
-        {
-          n: 2,
-          name: "Electric Studio",
-          grp: "Dark",
-          fonts: "Manrope",
-          v: {
-            "--bg": "#fff",
-            "--fg": "#0a0a0a",
-            "--muted": "#555",
-            "--acc": "#4361ee",
-            "--acc2": "#4361ee",
-            "--fd": "'Manrope'",
-            "--fb": "'Manrope'",
-            "--hw": 800,
-            "--card": "#4361ee",
-            "--cfg": "#fff",
-            "--cnum": "#fff",
-            "--ctext": "#fff",
-            "--btn": "0",
-            "--pad": "230px 120px 130px",
-            "--ls": "-.03em",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f2band"></div><div class="f2bar"></div><div class="f2b" style="left:110px">Studio</div><div class="f2b" style="right:110px">0' +
-              n +
-              " / 05</div>"
-            );
-          },
-        },
-        {
-          n: 3,
-          name: "Creative Voltage",
-          grp: "Dark",
-          fonts: "Syne + Space Mono",
-          v: {
-            "--bg": "#1a1a2e",
-            "--fg": "#fff",
-            "--muted": "#9aa4c4",
-            "--acc": "#d4ff00",
-            "--acc2": "#d4ff00",
-            "--fd": "'Syne'",
-            "--fb": "'Space Mono'",
-            "--hw": 800,
-            "--card": "#0066ff",
-            "--cfg": "#fff",
-            "--cnum": "#d4ff00",
-            "--ctext": "#1a1a2e",
-            "--btn": "999px",
-            "--pad": "210px 110px 110px 150px",
-            "--ls": "-.03em",
-            "--ps": "23px",
-            "--h3s": "34px",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f3strip"></div><div class="f3tag">VOLT / 0' +
-              n +
-              "</div>"
-            );
-          },
-        },
-        {
-          n: 4,
-          name: "Dark Botanical",
-          grp: "Dark",
-          fonts: "Cormorant + IBM Plex Sans",
-          v: {
-            "--bg": "#0f0f0f",
-            "--fg": "#e8e4df",
-            "--muted": "#9a9590",
-            "--acc": "#d4a574",
-            "--acc2": "#e8b4b8",
-            "--fd": "'Cormorant'",
-            "--fb": "'IBM Plex Sans'",
-            "--hw": 400,
-            "--hs": "italic",
-            "--card": "rgba(255,255,255,.04)",
-            "--cb": "1px solid rgba(201,184,150,.35)",
-            "--cr": "6px",
-            "--cnum": "#d4a574",
-            "--ctext": "#0f0f0f",
-            "--btn": "999px",
-            "--pad": "170px 160px 110px 210px",
-            "--h2s": "120px",
-            "--h1s": "210px",
-            "--qi": "italic",
-            "--qz": "96px",
-            "--ps": "25px",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f4o" style="width:560px;height:560px;right:-140px;bottom:-200px;background:#e8b4b8;opacity:.3"></div><div class="f4o" style="width:420px;height:420px;right:200px;bottom:-240px;background:#d4a574;opacity:.28"></div><div class="f4v"></div><div class="f4n">' +
-              n +
-              "</div>"
-            );
-          },
-        },
-        {
-          n: 5,
-          name: "Notebook Tabs",
-          grp: "Light",
-          fonts: "Bodoni Moda + DM Sans",
-          v: mix(NARROW, {
-            "--bg": "#2d2d2d",
-            "--fg": "#444",
-            "--hcol": "#1a1a1a",
-            "--muted": "#777",
-            "--acc": "#c06c84",
-            "--acc2": "#777",
-            "--fd": "'Bodoni Moda'",
-            "--fb": "'DM Sans'",
-            "--hw": 700,
-            "--card": "#fff",
-            "--cb": "1px solid #e3ddd0",
-            "--cfg": "#1a1a1a",
-            "--cnum": "#c06c84",
-            "--ctext": "#1a1a1a",
-            "--btn": "8px",
-            "--pad": "180px 420px 150px 340px",
-          }),
-          frame: function (n) {
-            var tabs = [
-              ["Intro", "#98d4bb", 130, 150],
-              ["Plan", "#c7b8ea", 300, 170],
-              ["Work", "#f4b8c5", 490, 150],
-              ["Data", "#a8d8ea", 660, 150],
-              ["End", "#ffe6a7", 830, 130],
-            ];
-            return (
-              '<div class="f5page"></div><div class="f5hole" style="top:200px"></div><div class="f5hole" style="top:440px"></div><div class="f5hole" style="top:680px"></div>' +
-              tabs
-                .map(function (t, i) {
-                  return (
-                    '<div class="f5tab' +
-                    (i === n - 1 ? " on" : "") +
-                    '" style="top:' +
-                    t[2] +
-                    "px;height:" +
-                    t[3] +
-                    "px;background:" +
-                    t[1] +
-                    '">' +
-                    t[0] +
-                    "</div>"
-                  );
-                })
-                .join("")
-            );
-          },
-        },
-        {
-          n: 6,
-          name: "Pastel Geometry",
-          grp: "Light",
-          fonts: "Plus Jakarta Sans",
-          v: mix(NARROW, {
-            "--bg": "#c8d9e6",
-            "--fg": "#5a6572",
-            "--hcol": "#1f2a37",
-            "--muted": "#6b7885",
-            "--acc": "#7c6aad",
-            "--acc2": "#7c6aad",
-            "--fd": "'Plus Jakarta Sans'",
-            "--fb": "'Plus Jakarta Sans'",
-            "--hw": 800,
-            "--card": "#eef2f6",
-            "--cr": "28px",
-            "--cfg": "#1f2a37",
-            "--cnum": "#7c6aad",
-            "--ctext": "#fff",
-            "--btn": "999px",
-            "--pad": "210px 400px 200px 280px",
-            "--ls": "-.03em",
-          }),
-          frame: function (n) {
-            var p = [
-              [1690, 240, 120, "#f0b4d4"],
-              [1690, 380, 190, "#a8d4c4"],
-              [1690, 590, 260, "#5a7c6a"],
-              [1760, 300, 190, "#9b8dc4"],
-              [1760, 510, 120, "#7c6aad"],
-            ];
-            return (
-              '<div class="f6card"></div>' +
-              p
-                .map(function (x) {
-                  return (
-                    '<div class="f6pill" style="left:' +
-                    x[0] +
-                    "px;top:" +
-                    x[1] +
-                    "px;height:" +
-                    x[2] +
-                    "px;background:" +
-                    x[3] +
-                    '"></div>'
-                  );
-                })
-                .join("") +
-              '<div class="f6ico">' +
-              n +
-              "</div>"
-            );
-          },
-        },
-        {
-          n: 7,
-          name: "Split Pastel",
-          grp: "Light",
-          fonts: "Outfit",
-          v: {
-            "--bg": "#f5e6dc",
-            "--fg": "#4a4a4a",
-            "--hcol": "#1a1a1a",
-            "--muted": "#6a6a6a",
-            "--acc": "#1a1a1a",
-            "--acc2": "#7c6aad",
-            "--fd": "'Outfit'",
-            "--fb": "'Outfit'",
-            "--hw": 800,
-            "--card": "#fff",
-            "--cr": "32px",
-            "--csh": "0 10px 30px rgba(0,0,0,.08)",
-            "--cfg": "#1a1a1a",
-            "--cnum": "#7c6aad",
-            "--ctext": "#fff",
-            "--btn": "999px",
-            "--pad": "210px 130px 120px",
-            "--ls": "-.03em",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f7r"></div><div class="f7b">' + n + " / 5</div>"
-            );
-          },
-        },
-        {
-          n: 8,
-          name: "Vintage Editorial",
-          grp: "Light",
-          fonts: "Fraunces + Work Sans",
-          v: {
-            "--bg": "#f5f3ee",
-            "--fg": "#555",
-            "--hcol": "#1a1a1a",
-            "--muted": "#666",
-            "--acc": "#e8d4c0",
-            "--acc2": "#b5835a",
-            "--fd": "'Fraunces'",
-            "--fb": "'Work Sans'",
-            "--hw": 900,
-            "--card": "#e8d4c0",
-            "--cb": "5px solid #1a1a1a",
-            "--csh": "10px 10px 0 #1a1a1a",
-            "--cfg": "#1a1a1a",
-            "--cnum": "#1a1a1a",
-            "--ctext": "#1a1a1a",
-            "--btn": "0",
-            "--pad": "230px 130px 130px",
-            "--ls": "-.02em",
-            "--gap": "44px",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f8n">N°0' +
-              n +
-              '</div><div class="f8geo"><div class="ring"></div><div class="ln"></div><div class="dot"></div></div>'
-            );
-          },
-        },
-        {
-          n: 9,
-          name: "Neon Cyber",
-          grp: "Specialty",
-          fonts: "Clash Display + Satoshi",
-          v: {
-            "--bg":
-              "#0a0f1c linear-gradient(rgba(0,255,204,.07) 1px,transparent 1px) 0 0/80px 80px",
-            "--fg": "#fff",
-            "--muted": "#aab6d3",
-            "--acc": "#00ffcc",
-            "--acc2": "#ff00aa",
-            "--fd": "'Clash Display','Syne'",
-            "--fb": "'Satoshi','Space Grotesk'",
-            "--hw": 700,
-            "--hsh": "0 0 24px rgba(0,255,204,.5)",
-            "--card": "rgba(0,255,204,.06)",
-            "--cb": "1px solid rgba(0,255,204,.45)",
-            "--cr": "12px",
-            "--csh": "0 0 30px rgba(0,255,204,.15)",
-            "--cfg": "#fff",
-            "--cnum": "#00ffcc",
-            "--ctext": "#0a0f1c",
-            "--btn": "10px",
-            "--pad": "210px 130px 110px",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f9g" style="width:520px;height:520px;left:-150px;top:-150px;background:#00ffcc;opacity:.2"></div><div class="f9g" style="width:560px;height:560px;right:-160px;bottom:-200px;background:#ff00aa;opacity:.22"></div><div class="f9p" style="left:1500px;top:220px"></div><div class="f9p" style="left:1700px;top:480px"></div><div class="f9p" style="left:1250px;top:900px"></div><div class="f9t">0' +
-              n +
-              " // 05</div>"
-            );
-          },
-        },
-        {
-          n: 10,
-          name: "Terminal Green",
-          grp: "Specialty",
-          fonts: "JetBrains Mono",
-          v: mix(NARROW, {
-            "--bg": "#0d1117",
-            "--fg": "#c9d1d9",
-            "--hcol": "#39d353",
-            "--muted": "#7d8590",
-            "--acc": "#39d353",
-            "--acc2": "#7d8590",
-            "--fd": "'JetBrains Mono'",
-            "--fb": "'JetBrains Mono'",
-            "--hw": 700,
-            "--hsh": "0 0 18px rgba(57,211,83,.45)",
-            "--card": "#161b22",
-            "--cb": "1px solid #30363d",
-            "--cr": "6px",
-            "--cfg": "#c9d1d9",
-            "--cnum": "#39d353",
-            "--ctext": "#0d1117",
-            "--btn": "4px",
-            "--pad": "190px 150px 110px",
-            "--h2s": "88px",
-            "--h1s": "150px",
-            "--h3s": "32px",
-            "--ps": "23px",
-            "--nn": "150px",
-            "--qz": "70px",
-            "--gap": "30px",
-            "--cpad": "36px",
-          }),
-          frame: function (n) {
-            return (
-              '<div class="f10t">● ● ●&nbsp;&nbsp; ~/slides/0' +
-              n +
-              '.md</div><div class="f10scan"></div>'
-            );
-          },
-        },
-        {
-          n: 11,
-          name: "Swiss Modern",
-          grp: "Specialty",
-          fonts: "Archivo + Nunito",
-          v: {
-            "--bg": "#fff",
-            "--fg": "#000",
-            "--muted": "#555",
-            "--acc": "#ff3300",
-            "--acc2": "#000",
-            "--fd": "'Archivo'",
-            "--fb": "'Nunito'",
-            "--hw": 800,
-            "--hcase": "uppercase",
-            "--ls": "-.03em",
-            "--card": "#fff",
-            "--cb": "4px solid #000",
-            "--cfg": "#000",
-            "--cnum": "#ff3300",
-            "--ctext": "#fff",
-            "--btn": "0",
-            "--pad": "230px 130px 120px",
-            "--qcase": "uppercase",
-            "--qz": "80px",
-            "--h1s": "200px",
-          },
-          frame: function (n) {
-            return (
-              [120, 660, 1200, 1740]
-                .map(function (x) {
-                  return '<div class="f11l" style="left:' + x + 'px"></div>';
-                })
-                .join("") +
-              '<div class="f11h" style="top:180px"></div><div class="f11h" style="top:960px"></div><div class="f11r"></div><div class="f11n">0' +
-              n +
-              "</div>"
-            );
-          },
-        },
-        {
-          n: 12,
-          name: "Paper & Ink",
-          grp: "Specialty",
-          fonts: "Cormorant Garamond + Source Serif 4",
-          v: {
-            "--bg": "#faf9f7",
-            "--fg": "#333",
-            "--hcol": "#1a1a1a",
-            "--muted": "#777",
-            "--acc": "#c41e3a",
-            "--acc2": "#c41e3a",
-            "--fd": "'Cormorant Garamond'",
-            "--fb": "'Source Serif 4'",
-            "--hw": 600,
-            "--card": "#fff",
-            "--cb": "1px solid #d8d3c8",
-            "--cfg": "#1a1a1a",
-            "--cnum": "#c41e3a",
-            "--ctext": "#fff",
-            "--btn": "0",
-            "--pad": "200px 170px 120px",
-            "--h2s": "112px",
-            "--h1s": "200px",
-            "--qi": "italic",
-            "--qz": "96px",
-          },
-          frame: function (n) {
-            return (
-              '<div class="f12r"></div><div class="f12t">Paper &amp; Ink</div><div class="f12f">— ' +
-              n +
-              " —</div>"
-            );
-          },
-        },
-      ];
+<!-- ================= DECK ================= -->
+<div id="deck">
+  <a id="back" href="#">← Tất cả template</a>
+  <div id="stage">
 
-      /* inject per-template CSS variables */
-      var css = "";
-      T.forEach(function (t) {
-        css +=
-          ".t" +
-          t.n +
-          "{" +
-          Object.keys(t.v)
-            .map(function (k) {
-              return k + ":" + t.v[k];
-            })
-            .join(";") +
-          "}\n";
-      });
-      var st = document.createElement("style");
-      st.textContent = css;
-      document.head.appendChild(st);
+<!-- 01 -->
+<section class="slide s1 t1" data-t="1" data-p="0" data-name="Bold Signal">
+  <div class="num">01</div>
+  <nav><span class="on">Intro</span><span>Problem</span><span>Solution</span><span>Roadmap</span></nav>
+  <div class="card"><h1>Bold<br>Signal</h1><p>Confident · bold · modern · high-impact</p></div>
+  <div class="side">Colored card as focal point on a dark gradient. Large section numbers, breadcrumb navigation, grid alignment.</div>
+</section>
+<!-- 02 -->
+<section class="slide s2 t2" data-t="2" data-p="0" data-name="Electric Studio">
+  <div class="bot"></div><div class="bar"></div>
+  <div class="brand tl">Studio</div><div class="brand tr">2026</div>
+  <div class="brand bl">Brand</div><div class="brand br">01 / 05</div>
+  <h1>“Clean, bold &amp; <em>high contrast</em> says it all.”</h1>
+  <p>Two-panel vertical split with an accent bar on the panel edge. Quote typography as the hero element.</p>
+</section>
+<!-- 03 -->
+<section class="slide s3 t3" data-t="3" data-p="0" data-name="Creative Voltage">
+  <div class="l"></div>
+  <h1>Creative<br>Voltage</h1>
+  <div class="script">bold &amp; electric!</div>
+  <div class="r">
+    <span class="badge">NEON</span><span class="badge o">RETRO-MODERN</span><span class="badge">ENERGY</span>
+    <p>Electric blue + neon yellow contrast, halftone texture, script accents and mono body copy.</p>
+  </div>
+</section>
+<!-- 04 -->
+<section class="slide s4 t4" data-t="4" data-p="0" data-name="Dark Botanical">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div><div class="vline"></div>
+  <div class="c">
+    <small>Elegant · Artistic · Premium</small>
+    <h1>Dark Botanical</h1>
+    <p>Soft blurred gradient circles, warm pink and gold accents, thin vertical lines. No illustrations — only abstract CSS shapes.</p>
+    <div class="sig">— Signature</div>
+  </div>
+</section>
+<!-- 05 -->
+<section class="slide s5 t5" data-t="5" data-p="0" data-name="Notebook Tabs">
+  <div class="page">
+    <div class="hole" style="top:200px"></div><div class="hole" style="top:440px"></div><div class="hole" style="top:680px"></div>
+    <small>Editorial · Tactile</small>
+    <h1>Notebook <i>Tabs</i></h1>
+    <p>Cream paper card on a dark background with colorful section tabs on the right edge and binder holes on the left.</p>
+  </div>
+  <div class="tab" style="top:130px;height:150px;background:#98d4bb">Intro</div>
+  <div class="tab" style="top:300px;height:170px;background:#c7b8ea">Plan</div>
+  <div class="tab" style="top:490px;height:150px;background:#f4b8c5">Work</div>
+  <div class="tab" style="top:660px;height:150px;background:#a8d8ea">Data</div>
+  <div class="tab" style="top:830px;height:130px;background:#ffe6a7">End</div>
+</section>
+<!-- 06 -->
+<section class="slide s6 t6" data-t="6" data-p="0" data-name="Pastel Geometry">
+  <div class="card">
+    <small>Friendly · Organized · Approachable</small>
+    <h1>Pastel<br>Geometry</h1>
+    <p>Rounded white card with a soft shadow, and vertical pills of varying height on the right edge.</p>
+    <div class="ico">↓</div>
+  </div>
+  <div class="pill" style="left:1690px;top:240px;height:120px;background:#f0b4d4"></div>
+  <div class="pill" style="left:1690px;top:380px;height:190px;background:#a8d4c4"></div>
+  <div class="pill" style="left:1690px;top:590px;height:260px;background:#5a7c6a"></div>
+  <div class="pill" style="left:1760px;top:300px;height:190px;background:#9b8dc4"></div>
+  <div class="pill" style="left:1760px;top:510px;height:120px;background:#7c6aad"></div>
+</section>
+<!-- 07 -->
+<section class="slide s7 t7" data-t="7" data-p="0" data-name="Split Pastel">
+  <div class="r"></div>
+  <h1>Split<br>Pastel</h1>
+  <p>Playful and modern: a peach / lavender split, badge pills with icons, grid overlay and rounded CTAs.</p>
+  <div class="b" style="top:240px;background:#c8f0d8">✦ Playful</div>
+  <div class="b" style="top:350px;left:1180px;background:#f0f0c8">★ Modern</div>
+  <div class="b" style="top:460px;background:#f0d4e0">● Friendly</div>
+  <div class="b" style="top:570px;left:1220px;background:#fff">◆ Creative</div>
+  <div class="cta">Get started →</div>
+</section>
+<!-- 08 -->
+<section class="slide s8 t8" data-t="8" data-p="0" data-name="Vintage Editorial">
+  <div class="geo"><div class="ring"></div><div class="ln"></div><div class="dot"></div></div>
+  <div class="c">
+    <small>Witty · Confident · Personality-driven</small>
+    <h1>Vintage<br><i>Editorial</i></h1>
+    <p>Abstract geometric shapes (circle outline + line + dot), bold bordered CTA boxes, conversational copy.</p>
+  </div>
+  <div class="cta">Read the story</div>
+</section>
+<!-- 09 -->
+<section class="slide s9 t9" data-t="9" data-p="0" data-name="Neon Cyber">
+  <div class="glow g1"></div><div class="glow g2"></div>
+  <div class="p" style="left:1400px;top:200px"></div><div class="p" style="left:1580px;top:420px"></div>
+  <div class="p" style="left:1250px;top:600px"></div><div class="p" style="left:1700px;top:760px"></div>
+  <div class="p" style="left:900px;top:140px"></div><div class="p" style="left:1500px;top:880px"></div>
+  <div class="c">
+    <small>Futuristic · Techy · Confident</small>
+    <h1>Neon <span>Cyber</span></h1>
+    <p>Deep navy, cyan and magenta glow, grid pattern and particle-style dots. Clash Display + Satoshi.</p>
+  </div>
+</section>
+<!-- 10 -->
+<section class="slide s10 t10" data-t="10" data-p="0" data-name="Terminal Green">
+  <div class="bar">● ● ●&nbsp;&nbsp; ~/slides — zsh</div>
+  <div class="ln"><b>$</b> <span class="k">cat</span> <span class="s">style.md</span></div>
+  <h1>Terminal Green<span class="cur"></span></h1>
+  <div class="ln c2"># developer-focused, hacker aesthetic</div>
+  <div class="ln"><span class="k">const</span> theme = { bg: <span class="s">"#0d1117"</span>, accent: <span class="s">"#39d353"</span> };</div>
+  <div class="ln c2">// scan lines · blinking cursor · code syntax styling</div>
+</section>
+<!-- 11 -->
+<section class="slide s11 t11" data-t="11" data-p="0" data-name="Swiss Modern">
+  <div class="gl" style="left:120px"></div><div class="gl" style="left:660px"></div><div class="gl" style="left:1200px"></div><div class="gl" style="left:1740px"></div>
+  <div class="gh" style="top:180px"></div><div class="gh" style="top:900px"></div>
+  <div class="red"></div><div class="circ"></div><div class="sq"></div>
+  <small>Clean · Precise · Bauhaus</small>
+  <h1>Swiss<br><span>Modern</span></h1>
+  <p>Visible grid, asymmetric layout, geometric shapes. Pure white, pure black, one red accent.</p>
+</section>
+<!-- 12 -->
+<section class="slide s12 t12" data-t="12" data-p="0" data-name="Paper & Ink">
+  <div class="c">
+    <small>Editorial · Literary · Thoughtful</small>
+    <h1>Paper &amp; Ink</h1>
+    <hr>
+    <div class="body">Warm cream paper, charcoal text and a single crimson accent. Drop caps open each section, pull quotes carry the argument, and elegant horizontal rules set the rhythm. It is a deck that reads like a good essay and rewards slow attention.</div>
+  </div>
+  <blockquote>Good typography is invisible until it is missing.</blockquote>
+</section>
 
-      /* ============ Generate pages 2–5 for each template ============ */
-      var stage = document.getElementById("stage");
-      var PAGES = [
-        function () {
-          return (
-            '<div class="g"><div class="g-kick">Overview</div><h2>Three things that matter</h2><div class="g-cards">' +
-            [
-              [
-                "01",
-                "Clear story",
-                "One idea per slide, built around a curiosity hook.",
-              ],
-              [
-                "02",
-                "Distinct style",
-                "Fonts, palette and layout chosen to avoid generic looks.",
-              ],
-              [
-                "03",
-                "Zero dependencies",
-                "A single HTML file that keeps working for years.",
-              ],
-            ]
-              .map(function (c) {
-                return (
-                  '<div class="g-card"><b>' +
-                  c[0] +
-                  "</b><h3>" +
-                  c[1] +
-                  "</h3><p>" +
-                  c[2] +
-                  "</p></div>"
-                );
-              })
-              .join("") +
-            "</div></div>"
-          );
-        },
-        function () {
-          return (
-            '<div class="g"><div class="g-kick">By the numbers</div><h2>Results at a glance</h2><div class="g-stats">' +
-            [
-              ["98%", "Viewer retention"],
-              ["3×", "Faster to build"],
-              ["0", "Dependencies"],
-            ]
-              .map(function (s) {
-                return (
-                  '<div class="g-stat"><div class="n">' +
-                  s[0] +
-                  '</div><div class="l">' +
-                  s[1] +
-                  "</div></div>"
-                );
-              })
-              .join("") +
-            "</div></div>"
-          );
-        },
-        function () {
-          return '<div class="g c"><p class="g-q">Generic is forgettable. Every deck should feel custom-crafted.</p><div class="g-cite">— Sample quotation</div></div>';
-        },
-        function () {
-          return '<div class="g c g-end"><h1>Thank you</h1><p>Questions? Let’s talk.</p><span class="g-cta">Get in touch →</span></div>';
-        },
-      ];
-      var NAMES = ["Overview", "By the numbers", "Quote", "Closing"];
-      T.forEach(function (t) {
-        PAGES.forEach(function (fn, i) {
-          var s = document.createElement("section");
-          s.className = "slide tpg t" + t.n;
-          s.dataset.t = t.n;
-          s.dataset.p = i + 1;
-          s.dataset.name = NAMES[i];
-          s.innerHTML =
-            '<div class="frame">' + t.frame(i + 2) + "</div>" + fn();
-          stage.appendChild(s);
-        });
-      });
+  </div>
+  <div id="bar"><button id="prev" aria-label="Trang trước">‹</button><div class="lbl" id="lbl"></div><button id="next" aria-label="Trang sau">›</button></div>
+</div>
 
-      /* ============ Bold template pack catalog (name/description from repo README) ============ */
-      var base =
-        "https://github.com/zarazhangrui/beautiful-html-templates/tree/main/templates/";
-      var bold = [
-        [
-          "Soft Editorial",
-          "soft-editorial",
-          "Cormorant Garamond serif on warm paper with sage, blush, and lemon accents.",
-        ],
-        [
-          "Editorial Forest",
-          "editorial-forest",
-          "Forest green, dusty pink, and warm cream in Source Serif 4; quiet quarterly-review aesthetic.",
-        ],
-        [
-          "Pin & Paper",
-          "pin-and-paper",
-          "Yellow paper with safety-pin illustrations, ink-blue handwritten Caveat, paper-grain texture.",
-        ],
-        [
-          "Sakura Chroma",
-          "sakura-chroma",
-          "Vintage Japanese cassette-package look: cream paper, diagonal rainbow ribbons, condensed bold type.",
-        ],
-        [
-          "Stencil & Tablet",
-          "stencil-tablet",
-          "Bone paper with stencil-cut headlines and a six-color earth palette.",
-        ],
-        [
-          "Cobalt Grid",
-          "cobalt-grid",
-          "Electric cobalt italic serifs on a graph-paper canvas with pixel-glitch decorations.",
-        ],
-        [
-          "Vellum",
-          "vellum",
-          "Deep navy canvas, warm-yellow italic Cormorant serifs, single dusty teal accent.",
-        ],
-        [
-          "Emerald Editorial",
-          "emerald-editorial",
-          "Magazine-cover business deck: emerald + navy + paper, double-rule masthead, Bodoni-style serif.",
-        ],
-        [
-          "Neo-Grid Bold",
-          "neo-grid-bold",
-          "Editorial neo-brutalism with a single neon yellow accent on off-white paper.",
-        ],
-        [
-          "Editorial Tri-Tone",
-          "editorial-tri-tone",
-          "Dusty pink, mustard cream, deep burgundy in Bricolage + Instrument Serif.",
-        ],
-        [
-          "Creative Mode",
-          "creative-mode",
-          "Cream canvas with green, pink, orange, yellow accents and Archivo Black display.",
-        ],
-        [
-          "Monochrome",
-          "monochrome",
-          "Ivory ledger paper, all-black type; Lora serif headlines, Jost body, no color.",
-        ],
-        [
-          "People's Platform",
-          "peoples-platform",
-          "Activist poster energy: blue, orange, red on cream, Alfa Slab + Caveat Brush.",
-        ],
-        [
-          "Pink Script — After Hours",
-          "pink-script",
-          "Black canvas, hot pink accent, pearl-cream paper, Instrument Serif headlines.",
-        ],
-        [
-          "8-Bit Orbit",
-          "8-bit-orbit",
-          "Pixel-art neon arcade aesthetic on a deep navy void.",
-        ],
-        [
-          "BlockFrame",
-          "block-frame",
-          "Neobrutalist deck with pastel-neon color blocks and chunky black borders.",
-        ],
-        [
-          "Blue Professional",
-          "blue-professional",
-          "Cream paper with electric cobalt blue accents; clean modern professional.",
-        ],
-        [
-          "Bold Poster",
-          "bold-poster",
-          "Editorial poster look with massive Shrikhand display and a fire-engine red accent.",
-        ],
-        [
-          "Broadside",
-          "broadside",
-          "Dark editorial canvas, single fire orange accent, bilingual Latin/Chinese type stack.",
-        ],
-        [
-          "Capsule",
-          "capsule",
-          "Modular pill-shaped cards on warm bone with a pastel-pop palette.",
-        ],
-        [
-          "Cartesian",
-          "cartesian",
-          "Quiet warm-neutral palette with classical Playfair serifs; tasteful and unhurried.",
-        ],
-        [
-          "Coral",
-          "coral",
-          "Cream and coral on near-black, set in oversized Bebas Neue.",
-        ],
-        [
-          "Daisy Days",
-          "daisy-days",
-          "Cheerful pastel deck with hand-drawn daisies, stars, and rainbows.",
-        ],
-        [
-          "Grove",
-          "grove",
-          "Forest-green canvas with cream type, Playfair serifs, single rust accent.",
-        ],
-        [
-          "Mat",
-          "mat",
-          "Dark sage canvas with bone paper and burnt-orange accent; mid-century modern.",
-        ],
-        [
-          "Playful",
-          "playful",
-          "Sun-warm peach background with Syne display: friendly indie launch deck.",
-        ],
-        [
-          "Raw Grid",
-          "raw-grid",
-          "Neo-brutalist deck with thick borders, offset shadows, pink/sage/ink palette.",
-        ],
-        [
-          "Retro Windows",
-          "retro-windows",
-          "Windows 95 chrome: gray title bars, MS Sans Serif, pixel typography.",
-        ],
-        [
-          "Retro Zine",
-          "retro-zine",
-          "Beige paper, green accent, Bebas Neue + Caveat: a riso-printed zine.",
-        ],
-        [
-          "Scatterbrain",
-          "scatterbrain",
-          "Post-it inspired: pastel sticky notes, Caveat, Shrikhand and Zilla Slab.",
-        ],
-        [
-          "Signal",
-          "signal",
-          "Deep navy canvas with bone paper and a muted-gold accent; institutional.",
-        ],
-        [
-          "Studio",
-          "studio",
-          "Black canvas with electric-yellow type; high-voltage design studio aesthetic.",
-        ],
-        [
-          "Biennale Yellow",
-          "biennale-yellow",
-          "Solar yellow on warm parchment, deep indigo serif, sun-glow gradients.",
-        ],
-        [
-          "Long Table",
-          "long-table",
-          "Warm cream and rust-red supper-club look: uppercase grotesk, italic Fraunces, pill buttons.",
-        ],
-      ];
-      function esc(x) {
-        return x.replace(/&/g, "&amp;");
-      }
-      [
-        [0, 17, "Bold Template Pack · 1/2"],
-        [17, 34, "Bold Template Pack · 2/2"],
-      ].forEach(function (r, i) {
-        var s = document.createElement("section");
-        s.className = "slide sc";
-        s.dataset.t = 13;
-        s.dataset.p = i;
-        s.dataset.name = r[2];
-        var h =
-          "<h2>" +
-          r[2] +
-          '</h2><div class="sub">34 design systems from beautiful-html-templates · bấm tên để mở mã nguồn template trên GitHub (tab mới)</div><div class="cols">';
-        bold.slice(r[0], r[1]).forEach(function (b) {
-          h +=
-            '<div class="it"><a href="' +
-            base +
-            b[1] +
-            '/" target="_blank" rel="noopener">' +
-            esc(b[0]) +
-            "</a><p>" +
-            esc(b[2]) +
-            "</p></div>";
-        });
-        s.innerHTML = h + "</div>";
-        stage.appendChild(s);
-      });
+<script>
+/* ============ Template definitions (palette / fonts / layout vars per preset) ============ */
+var NARROW={'--h2s':'84px','--h1s':'130px','--cpad':'30px','--h3s':'30px','--ps':'22px','--nn':'140px','--qz':'68px','--gap':'24px'};
+function mix(a,b){var o={},k;for(k in a)o[k]=a[k];for(k in b)o[k]=b[k];return o}
+var T=[
+{n:1,name:'Bold Signal',grp:'Dark',fonts:'Archivo Black + Space Grotesk',
+ v:{'--bg':'linear-gradient(135deg,#1a1a1a 0%,#2d2d2d 50%,#1a1a1a 100%)','--fg':'#fff','--muted':'#aaa','--acc':'#FF5722','--acc2':'#FF5722','--fd':"'Archivo Black'",'--fb':"'Space Grotesk'",'--hw':900,'--hcase':'uppercase','--card':'#FF5722','--cfg':'#1a1a1a','--cnum':'#1a1a1a','--ctext':'#1a1a1a','--btn':'0','--pad':'210px 120px 100px','--h2s':'96px'},
+ frame:function(n){var l=['Intro','Problem','Solution','Roadmap'],a=Math.min(n-2,3);return '<div class="f1num">0'+n+'</div><div class="f1nav">'+l.map(function(x,i){return '<span'+(i===a?' class="on"':'')+'>'+x+'</span>'}).join('')+'</div>'}},
+{n:2,name:'Electric Studio',grp:'Dark',fonts:'Manrope',
+ v:{'--bg':'#fff','--fg':'#0a0a0a','--muted':'#555','--acc':'#4361ee','--acc2':'#4361ee','--fd':"'Manrope'",'--fb':"'Manrope'",'--hw':800,'--card':'#4361ee','--cfg':'#fff','--cnum':'#fff','--ctext':'#fff','--btn':'0','--pad':'230px 120px 130px','--ls':'-.03em'},
+ frame:function(n){return '<div class="f2band"></div><div class="f2bar"></div><div class="f2b" style="left:110px">Studio</div><div class="f2b" style="right:110px">0'+n+' / 05</div>'}},
+{n:3,name:'Creative Voltage',grp:'Dark',fonts:'Syne + Space Mono',
+ v:{'--bg':'#1a1a2e','--fg':'#fff','--muted':'#9aa4c4','--acc':'#d4ff00','--acc2':'#d4ff00','--fd':"'Syne'",'--fb':"'Space Mono'",'--hw':800,'--card':'#0066ff','--cfg':'#fff','--cnum':'#d4ff00','--ctext':'#1a1a2e','--btn':'999px','--pad':'210px 110px 110px 150px','--ls':'-.03em','--ps':'23px','--h3s':'34px'},
+ frame:function(n){return '<div class="f3strip"></div><div class="f3tag">VOLT / 0'+n+'</div>'}},
+{n:4,name:'Dark Botanical',grp:'Dark',fonts:'Cormorant + IBM Plex Sans',
+ v:{'--bg':'#0f0f0f','--fg':'#e8e4df','--muted':'#9a9590','--acc':'#d4a574','--acc2':'#e8b4b8','--fd':"'Cormorant'",'--fb':"'IBM Plex Sans'",'--hw':400,'--hs':'italic','--card':'rgba(255,255,255,.04)','--cb':'1px solid rgba(201,184,150,.35)','--cr':'6px','--cnum':'#d4a574','--ctext':'#0f0f0f','--btn':'999px','--pad':'170px 160px 110px 210px','--h2s':'120px','--h1s':'210px','--qi':'italic','--qz':'96px','--ps':'25px'},
+ frame:function(n){return '<div class="f4o" style="width:560px;height:560px;right:-140px;bottom:-200px;background:#e8b4b8;opacity:.3"></div><div class="f4o" style="width:420px;height:420px;right:200px;bottom:-240px;background:#d4a574;opacity:.28"></div><div class="f4v"></div><div class="f4n">'+n+'</div>'}},
+{n:5,name:'Notebook Tabs',grp:'Light',fonts:'Bodoni Moda + DM Sans',
+ v:mix(NARROW,{'--bg':'#2d2d2d','--fg':'#444','--hcol':'#1a1a1a','--muted':'#777','--acc':'#c06c84','--acc2':'#777','--fd':"'Bodoni Moda'",'--fb':"'DM Sans'",'--hw':700,'--card':'#fff','--cb':'1px solid #e3ddd0','--cfg':'#1a1a1a','--cnum':'#c06c84','--ctext':'#1a1a1a','--btn':'8px','--pad':'180px 420px 150px 340px'}),
+ frame:function(n){var tabs=[['Intro','#98d4bb',130,150],['Plan','#c7b8ea',300,170],['Work','#f4b8c5',490,150],['Data','#a8d8ea',660,150],['End','#ffe6a7',830,130]];return '<div class="f5page"></div><div class="f5hole" style="top:200px"></div><div class="f5hole" style="top:440px"></div><div class="f5hole" style="top:680px"></div>'+tabs.map(function(t,i){return '<div class="f5tab'+(i===n-1?' on':'')+'" style="top:'+t[2]+'px;height:'+t[3]+'px;background:'+t[1]+'">'+t[0]+'</div>'}).join('')}},
+{n:6,name:'Pastel Geometry',grp:'Light',fonts:'Plus Jakarta Sans',
+ v:mix(NARROW,{'--bg':'#c8d9e6','--fg':'#5a6572','--hcol':'#1f2a37','--muted':'#6b7885','--acc':'#7c6aad','--acc2':'#7c6aad','--fd':"'Plus Jakarta Sans'",'--fb':"'Plus Jakarta Sans'",'--hw':800,'--card':'#eef2f6','--cr':'28px','--cfg':'#1f2a37','--cnum':'#7c6aad','--ctext':'#fff','--btn':'999px','--pad':'210px 400px 200px 280px','--ls':'-.03em'}),
+ frame:function(n){var p=[[1690,240,120,'#f0b4d4'],[1690,380,190,'#a8d4c4'],[1690,590,260,'#5a7c6a'],[1760,300,190,'#9b8dc4'],[1760,510,120,'#7c6aad']];return '<div class="f6card"></div>'+p.map(function(x){return '<div class="f6pill" style="left:'+x[0]+'px;top:'+x[1]+'px;height:'+x[2]+'px;background:'+x[3]+'"></div>'}).join('')+'<div class="f6ico">'+n+'</div>'}},
+{n:7,name:'Split Pastel',grp:'Light',fonts:'Outfit',
+ v:{'--bg':'#f5e6dc','--fg':'#4a4a4a','--hcol':'#1a1a1a','--muted':'#6a6a6a','--acc':'#1a1a1a','--acc2':'#7c6aad','--fd':"'Outfit'",'--fb':"'Outfit'",'--hw':800,'--card':'#fff','--cr':'32px','--csh':'0 10px 30px rgba(0,0,0,.08)','--cfg':'#1a1a1a','--cnum':'#7c6aad','--ctext':'#fff','--btn':'999px','--pad':'210px 130px 120px','--ls':'-.03em'},
+ frame:function(n){return '<div class="f7r"></div><div class="f7b">'+n+' / 5</div>'}},
+{n:8,name:'Vintage Editorial',grp:'Light',fonts:'Fraunces + Work Sans',
+ v:{'--bg':'#f5f3ee','--fg':'#555','--hcol':'#1a1a1a','--muted':'#666','--acc':'#e8d4c0','--acc2':'#b5835a','--fd':"'Fraunces'",'--fb':"'Work Sans'",'--hw':900,'--card':'#e8d4c0','--cb':'5px solid #1a1a1a','--csh':'10px 10px 0 #1a1a1a','--cfg':'#1a1a1a','--cnum':'#1a1a1a','--ctext':'#1a1a1a','--btn':'0','--pad':'230px 130px 130px','--ls':'-.02em','--gap':'44px'},
+ frame:function(n){return '<div class="f8n">N°0'+n+'</div><div class="f8geo"><div class="ring"></div><div class="ln"></div><div class="dot"></div></div>'}},
+{n:9,name:'Neon Cyber',grp:'Specialty',fonts:'Clash Display + Satoshi',
+ v:{'--bg':'#0a0f1c linear-gradient(rgba(0,255,204,.07) 1px,transparent 1px) 0 0/80px 80px','--fg':'#fff','--muted':'#aab6d3','--acc':'#00ffcc','--acc2':'#ff00aa','--fd':"'Clash Display','Syne'",'--fb':"'Satoshi','Space Grotesk'",'--hw':700,'--hsh':'0 0 24px rgba(0,255,204,.5)','--card':'rgba(0,255,204,.06)','--cb':'1px solid rgba(0,255,204,.45)','--cr':'12px','--csh':'0 0 30px rgba(0,255,204,.15)','--cfg':'#fff','--cnum':'#00ffcc','--ctext':'#0a0f1c','--btn':'10px','--pad':'210px 130px 110px'},
+ frame:function(n){return '<div class="f9g" style="width:520px;height:520px;left:-150px;top:-150px;background:#00ffcc;opacity:.2"></div><div class="f9g" style="width:560px;height:560px;right:-160px;bottom:-200px;background:#ff00aa;opacity:.22"></div><div class="f9p" style="left:1500px;top:220px"></div><div class="f9p" style="left:1700px;top:480px"></div><div class="f9p" style="left:1250px;top:900px"></div><div class="f9t">0'+n+' // 05</div>'}},
+{n:10,name:'Terminal Green',grp:'Specialty',fonts:'JetBrains Mono',
+ v:mix(NARROW,{'--bg':'#0d1117','--fg':'#c9d1d9','--hcol':'#39d353','--muted':'#7d8590','--acc':'#39d353','--acc2':'#7d8590','--fd':"'JetBrains Mono'",'--fb':"'JetBrains Mono'",'--hw':700,'--hsh':'0 0 18px rgba(57,211,83,.45)','--card':'#161b22','--cb':'1px solid #30363d','--cr':'6px','--cfg':'#c9d1d9','--cnum':'#39d353','--ctext':'#0d1117','--btn':'4px','--pad':'190px 150px 110px','--h2s':'88px','--h1s':'150px','--h3s':'32px','--ps':'23px','--nn':'150px','--qz':'70px','--gap':'30px','--cpad':'36px'}),
+ frame:function(n){return '<div class="f10t">● ● ●&nbsp;&nbsp; ~/slides/0'+n+'.md</div><div class="f10scan"></div>'}},
+{n:11,name:'Swiss Modern',grp:'Specialty',fonts:'Archivo + Nunito',
+ v:{'--bg':'#fff','--fg':'#000','--muted':'#555','--acc':'#ff3300','--acc2':'#000','--fd':"'Archivo'",'--fb':"'Nunito'",'--hw':800,'--hcase':'uppercase','--ls':'-.03em','--card':'#fff','--cb':'4px solid #000','--cfg':'#000','--cnum':'#ff3300','--ctext':'#fff','--btn':'0','--pad':'230px 130px 120px','--qcase':'uppercase','--qz':'80px','--h1s':'200px'},
+ frame:function(n){return [120,660,1200,1740].map(function(x){return '<div class="f11l" style="left:'+x+'px"></div>'}).join('')+'<div class="f11h" style="top:180px"></div><div class="f11h" style="top:960px"></div><div class="f11r"></div><div class="f11n">0'+n+'</div>'}},
+{n:12,name:'Paper & Ink',grp:'Specialty',fonts:'Cormorant Garamond + Source Serif 4',
+ v:{'--bg':'#faf9f7','--fg':'#333','--hcol':'#1a1a1a','--muted':'#777','--acc':'#c41e3a','--acc2':'#c41e3a','--fd':"'Cormorant Garamond'",'--fb':"'Source Serif 4'",'--hw':600,'--card':'#fff','--cb':'1px solid #d8d3c8','--cfg':'#1a1a1a','--cnum':'#c41e3a','--ctext':'#fff','--btn':'0','--pad':'200px 170px 120px','--h2s':'112px','--h1s':'200px','--qi':'italic','--qz':'96px'},
+ frame:function(n){return '<div class="f12r"></div><div class="f12t">Paper &amp; Ink</div><div class="f12f">— '+n+' —</div>'}}
+];
 
-      /* ============ Build the index (thumbnails are live clones of each cover) ============ */
-      var groupsEl = document.getElementById("groups");
-      function addGroup(title, items) {
-        var h = document.createElement("h2");
-        h.textContent = title;
-        groupsEl.appendChild(h);
-        var g = document.createElement("div");
-        g.className = "grid";
-        groupsEl.appendChild(g);
-        items.forEach(function (it) {
-          var a = document.createElement("a");
-          a.className = "tile";
-          a.href = "#t" + it.n;
-          a.addEventListener("click", function (e) {
-            e.preventDefault();
-            openDeck(it.n, 0);
-          });
-          var th = document.createElement("div");
-          th.className = "thumb";
-          var cover = stage
-            .querySelector('.slide[data-t="' + it.n + '"][data-p="0"]')
-            .cloneNode(true);
-          cover.classList.add("active");
-          th.appendChild(cover);
-          a.appendChild(th);
-          var info = document.createElement("div");
-          info.className = "tinfo";
-          info.innerHTML =
-            "<i>" +
-            it.pages +
-            " trang</i><b>" +
-            esc(it.name) +
-            "</b><small>" +
-            esc(it.fonts) +
-            "</small>";
-          a.appendChild(info);
-          g.appendChild(a);
-        });
-      }
-      ["Dark", "Light", "Specialty"].forEach(function (grp) {
-        addGroup(
-          grp + " themes",
-          T.filter(function (t) {
-            return t.grp === grp;
-          }).map(function (t) {
-            return {
-              n: t.n,
-              name: t.n + ". " + t.name,
-              fonts: t.fonts,
-              pages: 5,
-            };
-          }),
-        );
-      });
-      addGroup("Bold Template Pack", [
-        {
-          n: 13,
-          name: "34 bold templates",
-          fonts: "Danh mục + link tới mã nguồn từng template",
-          pages: 2,
-        },
-      ]);
+/* inject per-template CSS variables */
+var css='';
+T.forEach(function(t){css+='.t'+t.n+'{'+Object.keys(t.v).map(function(k){return k+':'+t.v[k]}).join(';')+'}\n'});
+var st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
 
-      function layoutThumbs() {
-        [].forEach.call(document.querySelectorAll(".thumb"), function (th) {
-          var k = th.clientWidth / 1920;
-          if (th.firstChild) th.firstChild.style.transform = "scale(" + k + ")";
-        });
-      }
+/* ============ Generate pages 2–5 for each template ============ */
+var stage=document.getElementById('stage');
+var PAGES=[
+ function(){return '<div class="g"><div class="g-kick">Overview</div><h2>Three things that matter</h2><div class="g-cards">'+
+  [['01','Clear story','One idea per slide, built around a curiosity hook.'],['02','Distinct style','Fonts, palette and layout chosen to avoid generic looks.'],['03','Zero dependencies','A single HTML file that keeps working for years.']]
+  .map(function(c){return '<div class="g-card"><b>'+c[0]+'</b><h3>'+c[1]+'</h3><p>'+c[2]+'</p></div>'}).join('')+'</div></div>'},
+ function(){return '<div class="g"><div class="g-kick">By the numbers</div><h2>Results at a glance</h2><div class="g-stats">'+
+  [['98%','Viewer retention'],['3×','Faster to build'],['0','Dependencies']].map(function(s){return '<div class="g-stat"><div class="n">'+s[0]+'</div><div class="l">'+s[1]+'</div></div>'}).join('')+'</div></div>'},
+ function(){return '<div class="g c"><p class="g-q">Generic is forgettable. Every deck should feel custom-crafted.</p><div class="g-cite">— Sample quotation</div></div>'},
+ function(){return '<div class="g c g-end"><h1>Thank you</h1><p>Questions? Let’s talk.</p><span class="g-cta">Get in touch →</span></div>'}
+];
+var NAMES=['Overview','By the numbers','Quote','Closing'];
+T.forEach(function(t){
+  PAGES.forEach(function(fn,i){
+    var s=document.createElement('section');
+    s.className='slide tpg t'+t.n;s.dataset.t=t.n;s.dataset.p=i+1;s.dataset.name=NAMES[i];
+    s.innerHTML='<div class="frame">'+t.frame(i+2)+'</div>'+fn();
+    stage.appendChild(s);
+  });
+});
 
-      /* ============ Routing: #  = index,  #t3 or #t3/2 = template 3 (page 2) ============ */
-      var indexEl = document.getElementById("index"),
-        deck = document.getElementById("deck");
-      var lbl = document.getElementById("lbl"),
-        prev = document.getElementById("prev"),
-        next = document.getElementById("next");
-      var cur = { t: 0, p: 0, list: [] };
-      function parse() {
-        var m = location.hash.match(/^#t(\d+)(?:\/(\d+))?/);
-        return m ? { t: +m[1], p: Math.max(0, (+m[2] || 1) - 1) } : null;
-      }
-      function tname(n) {
-        return n === 13
-          ? "Bold Template Pack"
-          : T[n - 1]
-            ? T[n - 1].n + ". " + T[n - 1].name
-            : "";
-      }
-      function render() {
-        route(parse());
-      }
-      function openDeck(t, p) {
-        try {
-          history.pushState(null, "", "#t" + t + "/" + (p + 1));
-        } catch (e) {}
-        route({ t: t, p: p });
-      }
-      function route(r) {
-        if (!r) {
-          deck.style.display = "none";
-          indexEl.style.display = "block";
-          document.title = "Frontend Slides — Template Gallery";
-          layoutThumbs();
-          return;
-        }
-        indexEl.style.display = "none";
-        deck.style.display = "block";
-        fit();
-        var list = [].slice
-          .call(stage.querySelectorAll('.slide[data-t="' + r.t + '"]'))
-          .sort(function (a, b) {
-            return a.dataset.p - b.dataset.p;
-          });
-        if (!list.length) {
-          route(null);
-          return;
-        }
-        cur.t = r.t;
-        cur.list = list;
-        show(Math.min(r.p, list.length - 1), true);
-      }
-      function show(p, fromRoute) {
-        cur.p = Math.max(0, Math.min(cur.list.length - 1, p));
-        [].forEach.call(stage.querySelectorAll(".slide"), function (s) {
-          s.classList.remove("active");
-        });
-        cur.list[cur.p].classList.add("active");
-        var dots =
-          '<span class="dots">' +
-          cur.list
-            .map(function (_, i) {
-              return (
-                '<i data-i="' +
-                i +
-                '" class="' +
-                (i === cur.p ? "on" : "") +
-                '"></i>'
-              );
-            })
-            .join("") +
-          "</span>";
-        lbl.innerHTML =
-          "<div>" +
-          esc(tname(cur.t)) +
-          " · " +
-          (cur.p + 1) +
-          "/" +
-          cur.list.length +
-          '</div><div style="margin-top:6px;display:flex;justify-content:center">' +
-          dots +
-          "</div>";
-        prev.disabled = cur.p === 0;
-        next.disabled = cur.p === cur.list.length - 1;
-        document.title =
-          tname(cur.t) + " — " + (cur.list[cur.p].dataset.name || "");
-        if (!fromRoute) {
-          try {
-            history.replaceState(null, "", "#t" + cur.t + "/" + (cur.p + 1));
-          } catch (e) {}
-        }
-      }
-      function fit() {
-        var k = Math.min(innerWidth / 1920, innerHeight / 1080);
-        stage.style.transform = "translate(-50%,-50%) scale(" + k + ")";
-      }
-      function goIndex() {
-        try {
-          history.pushState(null, "", location.pathname + location.search);
-        } catch (e) {}
-        route(null);
-      }
-      document.getElementById("back").addEventListener("click", function (e) {
-        e.preventDefault();
-        goIndex();
-      });
+/* ============ Bold template pack catalog (name/description from repo README) ============ */
+var base='https://github.com/zarazhangrui/beautiful-html-templates/tree/main/templates/';
+var bold=[
+ ["Soft Editorial","soft-editorial","Cormorant Garamond serif on warm paper with sage, blush, and lemon accents."],
+ ["Editorial Forest","editorial-forest","Forest green, dusty pink, and warm cream in Source Serif 4; quiet quarterly-review aesthetic."],
+ ["Pin & Paper","pin-and-paper","Yellow paper with safety-pin illustrations, ink-blue handwritten Caveat, paper-grain texture."],
+ ["Sakura Chroma","sakura-chroma","Vintage Japanese cassette-package look: cream paper, diagonal rainbow ribbons, condensed bold type."],
+ ["Stencil & Tablet","stencil-tablet","Bone paper with stencil-cut headlines and a six-color earth palette."],
+ ["Cobalt Grid","cobalt-grid","Electric cobalt italic serifs on a graph-paper canvas with pixel-glitch decorations."],
+ ["Vellum","vellum","Deep navy canvas, warm-yellow italic Cormorant serifs, single dusty teal accent."],
+ ["Emerald Editorial","emerald-editorial","Magazine-cover business deck: emerald + navy + paper, double-rule masthead, Bodoni-style serif."],
+ ["Neo-Grid Bold","neo-grid-bold","Editorial neo-brutalism with a single neon yellow accent on off-white paper."],
+ ["Editorial Tri-Tone","editorial-tri-tone","Dusty pink, mustard cream, deep burgundy in Bricolage + Instrument Serif."],
+ ["Creative Mode","creative-mode","Cream canvas with green, pink, orange, yellow accents and Archivo Black display."],
+ ["Monochrome","monochrome","Ivory ledger paper, all-black type; Lora serif headlines, Jost body, no color."],
+ ["People's Platform","peoples-platform","Activist poster energy: blue, orange, red on cream, Alfa Slab + Caveat Brush."],
+ ["Pink Script — After Hours","pink-script","Black canvas, hot pink accent, pearl-cream paper, Instrument Serif headlines."],
+ ["8-Bit Orbit","8-bit-orbit","Pixel-art neon arcade aesthetic on a deep navy void."],
+ ["BlockFrame","block-frame","Neobrutalist deck with pastel-neon color blocks and chunky black borders."],
+ ["Blue Professional","blue-professional","Cream paper with electric cobalt blue accents; clean modern professional."],
+ ["Bold Poster","bold-poster","Editorial poster look with massive Shrikhand display and a fire-engine red accent."],
+ ["Broadside","broadside","Dark editorial canvas, single fire orange accent, bilingual Latin/Chinese type stack."],
+ ["Capsule","capsule","Modular pill-shaped cards on warm bone with a pastel-pop palette."],
+ ["Cartesian","cartesian","Quiet warm-neutral palette with classical Playfair serifs; tasteful and unhurried."],
+ ["Coral","coral","Cream and coral on near-black, set in oversized Bebas Neue."],
+ ["Daisy Days","daisy-days","Cheerful pastel deck with hand-drawn daisies, stars, and rainbows."],
+ ["Grove","grove","Forest-green canvas with cream type, Playfair serifs, single rust accent."],
+ ["Mat","mat","Dark sage canvas with bone paper and burnt-orange accent; mid-century modern."],
+ ["Playful","playful","Sun-warm peach background with Syne display: friendly indie launch deck."],
+ ["Raw Grid","raw-grid","Neo-brutalist deck with thick borders, offset shadows, pink/sage/ink palette."],
+ ["Retro Windows","retro-windows","Windows 95 chrome: gray title bars, MS Sans Serif, pixel typography."],
+ ["Retro Zine","retro-zine","Beige paper, green accent, Bebas Neue + Caveat: a riso-printed zine."],
+ ["Scatterbrain","scatterbrain","Post-it inspired: pastel sticky notes, Caveat, Shrikhand and Zilla Slab."],
+ ["Signal","signal","Deep navy canvas with bone paper and a muted-gold accent; institutional."],
+ ["Studio","studio","Black canvas with electric-yellow type; high-voltage design studio aesthetic."],
+ ["Biennale Yellow","biennale-yellow","Solar yellow on warm parchment, deep indigo serif, sun-glow gradients."],
+ ["Long Table","long-table","Warm cream and rust-red supper-club look: uppercase grotesk, italic Fraunces, pill buttons."]
+];
+function esc(x){return x.replace(/&/g,'&amp;')}
+[[0,17,'Bold Template Pack · 1/2'],[17,34,'Bold Template Pack · 2/2']].forEach(function(r,i){
+  var s=document.createElement('section');s.className='slide sc';s.dataset.t=13;s.dataset.p=i;s.dataset.name=r[2];
+  var h='<h2>'+r[2]+'</h2><div class="sub">34 design systems from beautiful-html-templates · bấm tên để mở mã nguồn template trên GitHub (tab mới)</div><div class="cols">';
+  bold.slice(r[0],r[1]).forEach(function(b){h+='<div class="it"><a href="'+base+b[1]+'/" target="_blank" rel="noopener">'+esc(b[0])+'</a><p>'+esc(b[2])+'</p></div>'});
+  s.innerHTML=h+'</div>';stage.appendChild(s);
+});
 
-      prev.onclick = function () {
-        show(cur.p - 1);
-      };
-      next.onclick = function () {
-        show(cur.p + 1);
-      };
-      lbl.addEventListener("click", function (e) {
-        var d = e.target.closest("i[data-i]");
-        if (d) show(+d.dataset.i);
-      });
-      addEventListener("keydown", function (e) {
-        if (deck.style.display !== "block") return;
-        var k = e.key;
-        if (
-          k === "ArrowRight" ||
-          k === "ArrowDown" ||
-          k === "PageDown" ||
-          k === " "
-        ) {
-          e.preventDefault();
-          show(cur.p + 1);
-        } else if (k === "ArrowLeft" || k === "ArrowUp" || k === "PageUp") {
-          e.preventDefault();
-          show(cur.p - 1);
-        } else if (k === "Home") show(0);
-        else if (k === "End") show(cur.list.length - 1);
-        else if (k === "Escape" || k === "Backspace") {
-          e.preventDefault();
-          goIndex();
-        }
-      });
-      addEventListener("resize", function () {
-        fit();
-        layoutThumbs();
-      });
-      addEventListener("hashchange", render);
-      addEventListener("popstate", render);
-      if (document.fonts && document.fonts.ready)
-        document.fonts.ready.then(layoutThumbs);
-      render();
-    </script>
-    <script>
-      /* ============ Starry sky background: twinkling stars + occasional shooting stars ============ */
-      (function () {
-        var c = document.getElementById("sky"),
-          x = c.getContext("2d"),
-          S = [],
-          W = 0,
-          H = 0,
-          M = [];
-        var still =
-          window.matchMedia &&
-          matchMedia("(prefers-reduced-motion:reduce)").matches;
-        function init() {
-          var d = Math.min(window.devicePixelRatio || 1, 2);
-          W = innerWidth;
-          H = innerHeight;
-          c.width = W * d;
-          c.height = H * d;
-          c.style.width = W + "px";
-          c.style.height = H + "px";
-          x.setTransform(d, 0, 0, d, 0, 0);
-          var n = Math.round((W * H) / 2200);
-          S = [];
-          for (var i = 0; i < n; i++) {
-            var r = Math.random();
-            S.push({
-              x: Math.random() * W,
-              y: Math.random() * H,
-              r: Math.random() * 1.5 + 0.25,
-              p: Math.random() * 6.28,
-              s: Math.random() * 1.6 + 0.4,
-              h: r < 0.12 ? "#ffd9a0" : r < 0.3 ? "#a8c8ff" : "#ffffff",
-            });
-          }
-        }
-        function frame(t) {
-          x.clearRect(0, 0, W, H);
-          for (var i = 0; i < S.length; i++) {
-            var s = S[i];
-            x.globalAlpha = still
-              ? 0.8
-              : 0.3 + 0.7 * (0.5 + 0.5 * Math.sin((t / 1000) * s.s + s.p));
-            x.fillStyle = s.h;
-            x.beginPath();
-            x.arc(s.x, s.y, s.r, 0, 6.2832);
-            x.fill();
-          }
-          if (!still) {
-            if (Math.random() < 0.006 && M.length < 2)
-              M.push({
-                x: Math.random() * W * 0.7,
-                y: Math.random() * H * 0.45,
-                l: 0,
-              });
-            M = M.filter(function (m) {
-              m.l += 16;
-              var hx = m.x + m.l * 0.86,
-                hy = m.y + m.l * 0.5,
-                tx = hx - 150 * 0.86,
-                ty = hy - 150 * 0.5;
-              var g = x.createLinearGradient(tx, ty, hx, hy);
-              g.addColorStop(0, "rgba(255,255,255,0)");
-              g.addColorStop(1, "rgba(255,255,255,.95)");
-              x.globalAlpha = 1;
-              x.strokeStyle = g;
-              x.lineWidth = 2;
-              x.beginPath();
-              x.moveTo(tx, ty);
-              x.lineTo(hx, hy);
-              x.stroke();
-              return m.l < 900;
-            });
-            requestAnimationFrame(frame);
-          }
-        }
-        init();
-        requestAnimationFrame(frame);
-        addEventListener("resize", function () {
-          init();
-          if (still) requestAnimationFrame(frame);
-        });
-      })();
-    </script>
-  </body>
+
+/* ============ 34 BOLD TEMPLATES, built for real (order = `bold` catalog above) ============ */
+/* [group, fonts, bg, fg, muted, acc, acc2, display, body, decor, overrides] — palettes/fonts follow the repo README descriptions */
+function lum(h){h=h.replace('#','');if(h.length<6)h=h.replace(/./g,'$&$&');var r=parseInt(h.substr(0,2),16),g=parseInt(h.substr(2,2),16),b=parseInt(h.substr(4,2),16);return(.299*r+.587*g+.114*b)/255}
+var PX={'--h2s':'62px','--h1s':'96px','--nn':'110px','--qz':'46px','--h3s':'28px','--ps':'21px','--cpad':'30px','--gap':'24px'};
+var BD=[
+['L','#f6f0e6','#3b3a36','#7a766c','#9db8a0','#e8b4b8','Cormorant Garamond','DM Sans','orb+dn',{'--hw':600,'--hs':'italic','--cr':'18px','--card':'#fbf8f1'}],
+['L','#f3ecdc','#1f3a2c','#6b7a6c','#2f5d46','#d9a3a3','Source Serif 4','Source Serif 4','top+dn',{'--hw':600,'--card':'#e9dcc4'}],
+['L','#f4d94e','#1c2f6b','#4a5a99','#1c2f6b','#c0392b','Caveat','Caveat','tape+dn',{'--hw':600,'--h2s':'120px','--h1s':'230px','--ps':'38px','--h3s':'48px','--card':'#fff7c7','--csh':'6px 8px 0 rgba(28,47,107,.25)','--ctext':'#f4d94e'}],
+['L','#f3ead7','#2a2a2a','#6d655a','#e5484d','#2a9d8f','Bebas Neue','Space Grotesk','rib+dn',{'--hw':400,'--hcase':'uppercase','--h2s':'130px','--h1s':'250px','--nn':'230px','--card':'#fff','--cb':'3px solid #2a2a2a'}],
+['L','#e8e0d0','#2b2118','#6f6252','#b5541c','#3f6b5a','Archivo Black','Work Sans','db+dn',{'--hcase':'uppercase','--h2s':'92px','--h1s':'150px','--card':'#f6f0e2','--cb':'3px solid #2b2118'}],
+['L','#f4f4f0 linear-gradient(90deg,rgba(31,63,255,.1) 1px,transparent 1px) 0 0/60px 60px','#222','#667','#1f3fff','#1f3fff','Cormorant Garamond','IBM Plex Sans','pix+dn',{'--hw':600,'--hs':'italic','--hcol':'#1f3fff','--card':'#fff','--cb':'1px solid #1f3fff','--snum':'#1f3fff','--h2s':'112px'}],
+['D','#0f1b33','#f1e3a6','#9fb3b8','#f2d36b','#5f9ea0','Cormorant','IBM Plex Sans','top+dn',{'--hw':400,'--hs':'italic','--h2s':'118px','--h1s':'200px','--card':'rgba(95,158,160,.12)','--cb':'1px solid #5f9ea0','--cfg':'#f1e3a6'}],
+['L','#f4efe3','#10243e','#5c6b7e','#0f6b50','#10243e','Bodoni Moda','DM Sans','top+dn',{'--hw':700,'--card':'#fff','--cb':'1px solid #10243e'}],
+['L','#f4f1ea','#111','#555','#e6ff00','#111','Space Grotesk','Space Grotesk','db+dn',{'--hw':700,'--hcase':'uppercase','--ls':'-.03em','--card':'#e6ff00','--cb':'4px solid #111','--csh':'8px 8px 0 #111','--cfg':'#111','--cnum':'#111','--snum':'#111','--btn':'0','--ctext':'#111','--cr':'0'}],
+['P','#e9b8b8','#5a0f23','#8a4a58','#5a0f23','#e8c66a','Instrument Serif','Bricolage Grotesque','blk+dn',{'--hw':400,'--h2s':'120px','--h1s':'200px','--card':'#e8c66a','--cfg':'#5a0f23','--cnum':'#5a0f23','--ctext':'#f3e3c3'}],
+['P','#f6efdf','#1a1a1a','#555','#2fa05a','#ef5da8','Archivo Black','Manrope','db+dn',{'--hcase':'uppercase','--h2s':'92px','--h1s':'160px','--card':'#ffd23f','--cb':'3px solid #1a1a1a','--cnum':'#ef5da8','--cr':'18px'}],
+['L','#f3eedf','#111','#666','#111','#111','Lora','Jost','top+dn',{'--hw':700,'--card':'#fbf8ee','--cb':'1px solid #111','--snum':'#111','--btn':'0'}],
+['P','#f4ead5','#1b2a6b','#4a5890','#e8501f','#c1272d','Alfa Slab One','Caveat Brush','db+dn',{'--hw':400,'--hcase':'uppercase','--h2s':'96px','--h1s':'160px','--card':'#fff','--cb':'4px solid #1b2a6b','--csh':'8px 8px 0 #e8501f','--ps':'32px','--h3s':'42px','--btn':'0'}],
+['D','#0b0b0b','#f4ecdc','#a89f90','#ff3d9a','#ff3d9a','Instrument Serif','DM Sans','orb+dn',{'--hw':400,'--hs':'italic','--h2s':'120px','--h1s':'200px','--card':'#f4ecdc','--cfg':'#111','--cnum':'#ff3d9a'}],
+['D','#0a1030','#e8f0ff','#8fa0d0','#00e5ff','#ff3df2','Press Start 2P','Space Mono','pix+dn',mix(PX,{'--hw':400,'--card':'#101a4a','--cb':'4px solid #00e5ff','--cfg':'#e8f0ff','--btn':'0','--cr':'0'})],
+['P','#fdf6e3','#111','#555','#7cff6b','#ff6bd6','Space Grotesk','Space Grotesk','db+dn',{'--hw':700,'--card':'#b9a6ff','--cb':'5px solid #111','--csh':'8px 8px 0 #111','--cfg':'#111','--cnum':'#111','--snum':'#111','--btn':'0','--ctext':'#111','--cr':'0'}],
+['L','#f6f1e4','#14213d','#5a6783','#1f4fff','#1f4fff','Plus Jakarta Sans','Plus Jakarta Sans','top+dn',{'--ls':'-.03em','--card':'#fff','--cb':'1px solid #d6cfbd','--cr':'16px'}],
+['L','#f5ecd9','#151515','#555','#e10600','#e10600','Shrikhand','Work Sans','db+dn',{'--hw':400,'--h2s':'96px','--h1s':'170px','--card':'#fff','--cb':'3px solid #151515','--btn':'0'}],
+['D','#121212','#f2eee6','#9a948a','#ff5a1f','#ff5a1f','Playfair Display','Space Grotesk','top+dn',{'--hw':900,'--card':'rgba(255,255,255,.05)','--cb':'1px solid #444','--btn':'0','--cr':'0'}],
+['P','#efe8da','#1d1d1b','#666','#ff7ab8','#7ad1ff','Outfit','Outfit','pill+dn',{'--card':'#fff','--cr':'60px','--cnum':'#ff5aa5','--snum':'#ff5aa5'}],
+['L','#efe9df','#3a342c','#7d7466','#8a6f4d','#8a6f4d','Playfair Display','DM Sans','top+dgrid',{'--hw':700,'--card':'#fbf8f2','--cb':'1px solid #cfc5b3','--btn':'0'}],
+['D','#141211','#f6ecd9','#a69c8a','#ff6b57','#ff6b57','Bebas Neue','DM Sans','db+dn',{'--hw':400,'--hcase':'uppercase','--h2s':'140px','--h1s':'260px','--nn':'240px','--card':'rgba(255,107,87,.1)','--cb':'2px solid #ff6b57','--btn':'0'}],
+['P','#fdf1f4','#5a4a7a','#8a7da8','#ffd166','#8fd6c0','Fraunces','Nunito','sun+dn',{'--hw':700,'--card':'#fff','--cr':'36px','--snum':'#5a4a7a','--cnum':'#e0a100','--ctext':'#5a4a7a','--csh':'0 10px 30px rgba(90,74,122,.12)'}],
+['D','#1f3d2e','#f3ead6','#a9b9a4','#c4632d','#c4632d','Playfair Display','DM Sans','top+dn',{'--hw':700,'--card':'rgba(243,234,214,.08)','--cb':'1px solid #c4632d','--btn':'0'}],
+['D','#3c4a3e','#efe6d3','#b4bba8','#d9732b','#d9732b','Fraunces','DM Sans','dots+dn',{'--hw':700,'--card':'#efe6d3','--cfg':'#2b3a2e','--cnum':'#d9732b','--cr':'6px','--pad':'210px 130px 130px 190px'}],
+['P','#ffc9a3','#2a1b3d','#6b4a66','#ff5d3a','#7c4dff','Syne','DM Sans','sun+dn',{'--hw':800,'--ls':'-.03em','--card':'#fff','--cr':'28px','--snum':'#2a1b3d'}],
+['P','#f7e1e8','#111','#555','#b8d4b0','#ff7aa8','Space Grotesk','Space Grotesk','dgrid+db',{'--hw':700,'--card':'#b8d4b0','--cb':'5px solid #111','--csh':'10px 10px 0 #111','--cfg':'#111','--cnum':'#111','--snum':'#111','--btn':'0','--ctext':'#111','--cr':'0'}],
+['P','#008080','#fff','#e0ffff','#000080','#ffff00','VT323','VT323','win',{'--hw':400,'--h2s':'130px','--h1s':'220px','--nn':'220px','--ps':'38px','--h3s':'52px','--card':'#c0c0c0','--cb':'4px outset #fff','--cfg':'#000','--cnum':'#000080','--btn':'0','--cr':'0','--pad':'200px 100px 100px','--snum':'#ffff00'}],
+['L','#e9dfc7','#1d1d1b','#6a6354','#2e7d4f','#2e7d4f','Bebas Neue','Caveat','tape+dn',{'--hw':400,'--hcase':'uppercase','--h2s':'130px','--h1s':'250px','--nn':'230px','--ps':'38px','--card':'#f6efdc','--cb':'3px solid #1d1d1b','--btn':'0'}],
+['P','#f6f1e7','#2b2b2b','#6d6d6d','#ff8fa3','#ffd84d','Shrikhand','Zilla Slab','tape+dn',{'--hw':400,'--h2s':'96px','--h1s':'170px','--card':'#fff3a0','--csh':'6px 8px 14px rgba(0,0,0,.18)','--cnum':'#d6455d','--ctext':'#2b2b2b','--cr':'4px'}],
+['D','#0f1d3a','#f1ead9','#9aa6bd','#c9a54a','#c9a54a','Playfair Display','IBM Plex Sans','top+dn',{'--hw':700,'--card':'#f1ead9','--cfg':'#0f1d3a','--cnum':'#9a7a1f','--btn':'0'}],
+['D','#0b0b0b','#ffe600','#bdb34a','#ffe600','#fff','Archivo Black','Space Grotesk','db+dn',{'--hcase':'uppercase','--h2s':'92px','--h1s':'160px','--card':'transparent','--cb':'3px solid #ffe600','--cfg':'#ffe600','--btn':'0','--ctext':'#0b0b0b'}],
+['L','radial-gradient(circle at 82% 18%,#ffd23a 0,rgba(255,210,58,0) 42%),#f6ead0','#1d1a5c','#5a578f','#f2b705','#1d1a5c','Fraunces','DM Sans','sun+dn',{'--hw':900,'--card':'rgba(255,255,255,.6)','--cb':'2px solid #1d1a5c','--snum':'#1d1a5c','--ctext':'#1d1a5c','--cr':'18px'}],
+['L','#f4e9d6','#3a2a22','#8a6f5e','#a8341f','#a8341f','Archivo','Work Sans','top+dn',{'--hw':800,'--hcase':'uppercase','--hcol':'#a8341f','--h2s':'96px','--card':'transparent','--cb':'3px solid #a8341f','--cr':'40px','--ctext':'#f4e9d6'}]
+];
+var BT=BD.map(function(d,i){
+  var b=bold[i],v={'--bg':d[1],'--fg':d[2],'--muted':d[3],'--acc':d[4],'--acc2':d[5],'--fd':"'"+d[6]+"'",'--fb':"'"+d[7]+"'",'--hw':800,
+    '--card':'rgba(128,128,128,.14)','--cfg':d[2],'--cnum':d[4],'--ctext':lum(d[4])>.55?'#111':'#fff','--btn':'999px','--pad':'210px 130px 130px'};
+  var o=d[9];for(var k in o)v[k]=o[k];
+  return {n:101+i,name:b[0],desc:b[2],grp:d[0],fonts:d[6]+(d[7]!==d[6]?' + '+d[7]:''),v:v,deco:d[8]};
+});
+function bframe(t,n){
+  var lab=esc(t.name)+' · 0'+n,h='';
+  t.deco.split('+').forEach(function(k){
+    h+={top:'<div class="dr"></div>',db:'<div class="db"></div>',blk:'<div class="db" style="width:150px;height:150px;background:var(--acc)"></div>',
+      rib:'<div class="drib"></div>',orb:'<div class="do" style="width:520px;height:520px;right:-120px;top:-160px;background:var(--acc)"></div><div class="do" style="width:420px;height:420px;right:260px;bottom:-220px;background:var(--acc2)"></div>',
+      dots:'<div class="ddots"></div>',win:'<div class="dwin">'+lab+'</div>',sun:'<div class="dsun"></div>',tape:'<div class="dtape"></div>',
+      pix:'<div class="dpix"></div>',pill:'<div class="dpill"></div>',dgrid:'<div class="dgrid"></div>',dn:'<div class="dn">'+lab+'</div>'}[k]||'';
+  });
+  return h;
+}
+var bcss='';BT.forEach(function(t){bcss+='.t'+t.n+'{'+Object.keys(t.v).map(function(k){return k+':'+t.v[k]}).join(';')+'}\n'});
+var bst=document.createElement('style');bst.textContent=bcss;document.head.appendChild(bst);
+var BPAGES=[function(t){var big=t.name.length>13;return '<div class="g c g-end"><div class="g-kick">Bold template · '+(t.n-100)+' / 34</div><h1'+(big?' style="font-size:calc(var(--h1s,180px)*.62)"':'')+'>'+esc(t.name)+'</h1><p>'+esc(t.desc)+'</p></div>'}].concat(PAGES.map(function(f){return function(){return f()}}));
+BT.forEach(function(t){
+  BPAGES.forEach(function(fn,i){
+    var s=document.createElement('section');
+    s.className='slide tpg t'+t.n;s.dataset.t=t.n;s.dataset.p=i;s.dataset.name=i?NAMES[i-1]:'Cover';
+    s.innerHTML='<div class="frame">'+bframe(t,i+1)+'</div>'+fn(t);
+    stage.appendChild(s);
+  });
+});
+
+/* ============ Build the index (thumbnails are live clones of each cover) ============ */
+var groupsEl=document.getElementById('groups');
+function addGroup(title,items){
+  var h=document.createElement('h2');h.textContent=title;groupsEl.appendChild(h);
+  var g=document.createElement('div');g.className='grid';groupsEl.appendChild(g);
+  items.forEach(function(it){
+    var a=document.createElement('a');a.className='tile';a.href='#t'+it.n;
+    var th=document.createElement('div');th.className='thumb';
+    var cover=stage.querySelector('.slide[data-t="'+it.n+'"][data-p="0"]').cloneNode(true);
+    cover.classList.add('active');th.appendChild(cover);
+    a.appendChild(th);
+    var info=document.createElement('div');info.className='tinfo';
+    info.innerHTML='<i>'+it.pages+' trang</i><b>'+esc(it.name)+'</b><small>'+esc(it.fonts)+'</small>';
+    a.appendChild(info);g.appendChild(a);
+  });
+}
+['Dark','Light','Specialty'].forEach(function(grp){
+  addGroup(grp+' themes',T.filter(function(t){return t.grp===grp}).map(function(t){return {n:t.n,name:t.n+'. '+t.name,fonts:t.fonts,pages:5}}));
+});
+[['L','Bold · Light themes'],['D','Bold · Dark themes'],['P','Bold · Colorful & playful']].forEach(function(g){
+  addGroup(g[1],BT.filter(function(t){return t.grp===g[0]}).map(function(t){return {n:t.n,name:(t.n-100)+'. '+t.name,fonts:t.fonts,pages:5}}));
+});
+addGroup('Danh mục',[{n:13,name:'34 bold templates (GitHub)',fonts:'Link tới mã nguồn từng template',pages:2}]);
+
+function layoutThumbs(){
+  [].forEach.call(document.querySelectorAll('.thumb'),function(th){
+    var k=th.clientWidth/1920;if(th.firstChild)th.firstChild.style.transform='scale('+k+')';
+  });
+}
+
+/* ============ Routing: #  = index,  #t3 or #t3/2 = template 3 (page 2) ============ */
+var indexEl=document.getElementById('index'),deck=document.getElementById('deck');
+var lbl=document.getElementById('lbl'),prev=document.getElementById('prev'),next=document.getElementById('next');
+var cur={t:0,p:0,list:[]};
+function parse(){var m=location.hash.match(/^#t(\d+)(?:\/(\d+))?/);return m?{t:+m[1],p:Math.max(0,(+m[2]||1)-1)}:null}
+function tname(n){if(n>100)return (n-100)+'. '+BT[n-101].name;return n===13?'Bold Template Pack':(T[n-1]?T[n-1].n+'. '+T[n-1].name:'')}
+function render(){
+  var r=parse();
+  if(!r){
+    deck.style.display='none';indexEl.style.display='block';document.title='Frontend Slides — Template Gallery';layoutThumbs();return;
+  }
+  indexEl.style.display='none';deck.style.display='block';fit();
+  var list=[].slice.call(stage.querySelectorAll('.slide[data-t="'+r.t+'"]')).sort(function(a,b){return a.dataset.p-b.dataset.p});
+  if(!list.length){location.hash='';return}
+  cur.t=r.t;cur.list=list;show(Math.min(r.p,list.length-1),true);
+}
+function show(p,fromRoute){
+  cur.p=Math.max(0,Math.min(cur.list.length-1,p));
+  [].forEach.call(stage.querySelectorAll('.slide'),function(s){s.classList.remove('active')});
+  cur.list[cur.p].classList.add('active');
+  var dots='<span class="dots">'+cur.list.map(function(_,i){return '<i data-i="'+i+'" class="'+(i===cur.p?'on':'')+'"></i>'}).join('')+'</span>';
+  lbl.innerHTML='<div>'+esc(tname(cur.t))+' · '+(cur.p+1)+'/'+cur.list.length+'</div><div style="margin-top:6px;display:flex;justify-content:center">'+dots+'</div>';
+  prev.disabled=cur.p===0;next.disabled=cur.p===cur.list.length-1;
+  document.title=tname(cur.t)+' — '+(cur.list[cur.p].dataset.name||'');
+  if(!fromRoute){try{history.replaceState(null,'','#t'+cur.t+'/'+(cur.p+1))}catch(e){}}
+}
+function fit(){var k=Math.min(innerWidth/1920,innerHeight/1080);stage.style.transform='translate(-50%,-50%) scale('+k+')'}
+function goIndex(){location.hash=''}
+
+prev.onclick=function(){show(cur.p-1)};
+next.onclick=function(){show(cur.p+1)};
+lbl.addEventListener('click',function(e){var d=e.target.closest('i[data-i]');if(d)show(+d.dataset.i)});
+addEventListener('keydown',function(e){
+  if(deck.style.display!=='block')return;
+  var k=e.key;
+  if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||k===' '){e.preventDefault();show(cur.p+1)}
+  else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();show(cur.p-1)}
+  else if(k==='Home')show(0);else if(k==='End')show(cur.list.length-1);
+  else if(k==='Escape'||k==='Backspace'){e.preventDefault();goIndex()}
+});
+addEventListener('resize',function(){fit();layoutThumbs()});
+addEventListener('hashchange',render);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(layoutThumbs);
+render();
+</script>
+</body>
 </html>
